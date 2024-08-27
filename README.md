@@ -146,6 +146,8 @@ myDictionary = defaultdict(list)
 
 # To check if key is in dict():
 if('key' in my_dic):
+
+#Note: tuple can be used as a key
 ```
 
 ## Counter
