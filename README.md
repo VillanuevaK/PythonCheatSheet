@@ -146,8 +146,13 @@ myDictionary = defaultdict(list)
 
 # To check if key is in dict():
 if('key' in my_dic):
-
 #Note: tuple can be used as a key
+
+# Sorting the dictionary by keys
+sorted_by_keys = dict(sorted(my_dict.items()))
+
+# Sorting the dictionary by values
+sorted_by_values = dict(sorted(my_dict.items(), key=lambda item: item[1]))
 ```
 
 ## Counter
