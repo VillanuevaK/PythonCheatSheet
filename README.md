@@ -100,6 +100,12 @@ equivalent to a[slice(None, None, -1)].
 
 While the :-based notation is very helpful for simple slicing, the explicit use
 of slice() objects simplifies the programmatic generation of slicing.
+
+Sorting a string:
+string = "python"
+sorted_string = ''.join(sorted(string))
+
+print(sorted_string)  # Output: 'hnopty'
 ```
 
 ## Dictionary
@@ -700,4 +706,5 @@ string.isupper() # The isupper() method returns True if all cased characters in 
 
 [The Modulo Operation (%) With Negative Numbers in Python](https://betterprogramming.pub/modulo-operation-with-negative-numbers-in-python-38cb7256bb32)
 --
-Test
+
+
