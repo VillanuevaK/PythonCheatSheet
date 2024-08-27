@@ -44,6 +44,10 @@ nums.pop() # pops last element [which element to pop can also be given as option
 nums.reverse() # reverses original list (nums in this case)
 nums.sort() # sorts list [does NOT return sorted list]
 #Python's default sort uses Tim Sort, which is a combination of both merge sort and insertion sort.
+
+#List multiplication (get a list of size 'length' with all 1's)
+list1 = [1]*'length'
+
 ```
 
 List or String slicing in Python
