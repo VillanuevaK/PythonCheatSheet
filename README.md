@@ -142,7 +142,10 @@ dict.update({KEY:VALUE})
 # it will be created and error will not be thrown (which happens in normal dictionary)
 # Also, the new element created will be of argument type, for example in the below line
 # an element of type 'list' will be made for a Key that does not exist
-myDictionary = defaultdict(list) 
+myDictionary = defaultdict(list)
+
+# To check if key is in dict():
+if('key' in my_dic):
 ```
 
 ## Counter
