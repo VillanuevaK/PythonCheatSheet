@@ -102,10 +102,10 @@ While the :-based notation is very helpful for simple slicing, the explicit use
 of slice() objects simplifies the programmatic generation of slicing.
 
 Sorting a string:
-string = "python"
 sorted_string = ''.join(sorted(string))
+#orrrrr you can do:
+sorted(string) #but it turns it into a list
 
-print(sorted_string)  # Output: 'hnopty'
 ```
 
 ## Dictionary
