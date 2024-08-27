@@ -149,6 +149,7 @@ if('key' in my_dic):
 #Note: tuple can be used as a key
 
 # Sorting the dictionary by keys
+# Note: sorted() gives you a list of tuples!, so we use dict() again
 sorted_by_keys = dict(sorted(my_dict.items()))
 
 # Sorting the dictionary by values
