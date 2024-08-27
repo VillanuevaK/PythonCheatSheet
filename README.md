@@ -46,7 +46,7 @@ nums.sort() # sorts list [does NOT return sorted list]
 #Python's default sort uses Tim Sort, which is a combination of both merge sort and insertion sort.
 
 #List multiplication (get a list of size 'length' with all 1's)
-list1 = [1]*'length'
+list1 = [1]*length
 
 ```
 
