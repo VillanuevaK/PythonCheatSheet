@@ -727,7 +727,32 @@ string.isupper() # The isupper() method returns True if all cased characters in 
             return 0
     ```
     
+## Class Variable and Instance Variable
+```
+class Example:
+    # Class variable
+    class_var = "I am a class variable"
 
+    def __init__(self, instance_var):
+        # Instance variable
+        self.instance_var = instance_var
+
+    def show_variables(self):
+        # Accessing class variable
+        print("Class variable:", Example.class_var)
+        print("Class variable using self:", self.class_var)
+        
+        # Accessing instance variable
+        print("Instance variable:", self.instance_var)
+
+# Creating an instance of Example
+obj = Example("I am an instance variable")
+
+# Calling the method to show variables
+obj.show_variables()
+```
+
+## Integer Division
 > Python integer division acts a bit weird with -ve numbers ex: -3//2 will give -2 answer instead of -1 so always use int(-3/2) for integer division in problems
 > 
 
