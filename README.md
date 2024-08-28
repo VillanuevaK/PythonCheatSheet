@@ -763,6 +763,7 @@ float('-inf')
 >
 #to always truncate two integers toward zero (including negatives):
 int(float(num2) / num1)
+#float(num2) / num1 converts num2 to a float first and then performs true division, resulting in a float.
 ```
 
 # Resources
