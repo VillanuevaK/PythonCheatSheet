@@ -758,8 +758,12 @@ float('-inf')
 ```
 
 ## Integer Division
+```
 > Python integer division acts a bit weird with -ve numbers ex: -3//2 will give -2 answer instead of -1 so always use int(-3/2) for integer division in problems
-> 
+>
+#to always truncate two integers toward zero (including negatives):
+int(float(num2) / num1)
+```
 
 # Resources
 
