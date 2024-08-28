@@ -49,6 +49,17 @@ nums.sort() # sorts list [does NOT return sorted list]
 list1 = [1]*length
 
 ```
+## Matrices
+```
+#Transpose a matrix to turn columns in row (for easier access to just columns
+matrix = [[1,2,3],[4,5,6],[7,8,9]]
+zip(*matrix)
+#result = [
+#(1, 4, 7), 
+#(2, 5, 8), 
+#(3, 6, 9)]
+```
+
 
 List or String slicing in Python
 
