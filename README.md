@@ -751,6 +751,11 @@ obj = Example("I am an instance variable")
 # Calling the method to show variables
 obj.show_variables()
 ```
+## Max Int, Min Int 
+```
+float('inf')
+float('-inf')
+```
 
 ## Integer Division
 > Python integer division acts a bit weird with -ve numbers ex: -3//2 will give -2 answer instead of -1 so always use int(-3/2) for integer division in problems
