@@ -58,6 +58,11 @@ zip(*matrix)
 #(1, 4, 7), 
 #(2, 5, 8), 
 #(3, 6, 9)]
+
+#matrixListCompression
+#we have a for loop for each variable that we need
+#[matrix[varNeeded1][varNeeded2] for varNeeded1 in something_like_a_tuple_or_range(0,whatever) for varNeeded2...]
+square = [board[x][y] for x in range(i, i + 3) for y in range(j, j + 3)] 
 ```
 
 
