@@ -421,7 +421,8 @@ string.isupper() # The isupper() method returns True if all cased characters in 
     ** map(fun, iter) **
     # fun : It is a function to which map passes each element of given iterable.
     # iter : It is a iterable which is to be mapped.
-    
+
+    #itterating 2 lists or more in for loop
     ** zip(list,list) **
     for elem1,elem2 in zip(firstList,secondList):
     	# will merge both lists and produce tuples with both elements
