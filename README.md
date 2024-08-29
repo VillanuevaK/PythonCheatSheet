@@ -445,6 +445,13 @@ string.isupper() # The isupper() method returns True if all cased characters in 
     ** enumerate(list|tuple) ** 
     # [when you need to attach indexes to lists or tuples ]
     enumerate(anyList) # ['a','b','c'] => [(0, 'a'), (1, 'b'), (2, 'c')]
+    #in a forloop:
+    fruits = ['apple', 'banana', 'cherry']
+    for index, fruit in enumerate(fruits, start=3): #start is optional
+        print(index, fruit)
+    #3 apple
+    #4 banana
+    #5 cherry
     
     ** filter(function|list) **
     filter(myFunction,list) # returns list with elements that returned true when passed in function
