@@ -734,6 +734,28 @@ string.isupper() # The isupper() method returns True if all cased characters in 
         else:
             return 0
     ```
+
+    Sorting with a tie breaker/Sorting based on two things
+    ```python
+    tuples.sort(key=lambda x: (x[0], x[1]))
+    ```
+
+    Sort list on multiple objects but only one in reversed order
+    ```python
+    a = [str(i) for i in range(10,29)]
+    a.sort(key = lambda x: x[1], reverse=True)
+    a.sort(key = lambda x: x[0])
+    ```
+
+    Sort string in lexicographic order
+    ```python
+    sorted(s, key=str.lower) or sorted(s, key=str.upper)
+
+    #for a specific order of uppers and lowers
+    text='aAaBbcCdE'
+    sorted(text, key=lambda x: (str.lower(x), x))
+    # ['A', 'a', 'a', 'B', 'b', 'C', 'c', 'd', 'E']
+    ```
     
 ## Class Variable and Instance Variable
 ```
