@@ -177,6 +177,9 @@ sorted_by_values = dict(sorted(my_dict.items(), key=lambda item: item[1]))
 
 # Sorting the dictionary by values in reverse order
 sorted_by_values_desc = dict(sorted(my_dict.items(), key=lambda item: item[1], reverse=True))
+
+# itterate through dict
+for k,v in map_s.items()
 ```
 
 ## Counter
