@@ -58,18 +58,36 @@ let list1 = Array(repeating: 1, count: 5) // [1, 1, 1, 1, 1]
 ```
 ## Matrices
 ```
-#Transpose a matrix to turn columns in row (for easier access to just columns
-matrix = [[1,2,3],[4,5,6],[7,8,9]]
-zip(*matrix)
-#result = [
-#(1, 4, 7), 
-#(2, 5, 8), 
-#(3, 6, 9)]
+let matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
 
-#matrixListCompression
-#we have a for loop for each variable that we need
-#[matrix[varNeeded1][varNeeded2] for varNeeded1 in something_like_a_tuple_or_range(0,whatever) for varNeeded2...]
-square = [board[x][y] for x in range(i, i + 3) for y in range(j, j + 3)] 
+// To transpose a matrix in Swift (turn rows into columns for easy access of just columns)
+let transposedMatrix = Array(zip(matrix[0], matrix[1], matrix[2])) // Result: [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
+// To make it more generic and handle matrices of any size
+let transposedMatrix = matrix[0].indices.map { index in
+    matrix.map { $0[index] }
+}
+
+
+//flatMap for something similar to list compression
+let board = [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+    [13, 14, 15, 16]
+]
+let i = 1
+let j = 1
+let square = (i..<i+2).flatMap { x in
+    (j..<j+2).map { y in
+        board[x][y]
+    }
+}
+// Result: [6, 7, 10, 11]
+
 ```
 
 
