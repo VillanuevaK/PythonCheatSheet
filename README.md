@@ -7,7 +7,7 @@
 
 ## Strings
 
-```python
+```Swift
 # ** split Function **
 let text = "Python is a fun programming language"
 let words = text.split(separator: " ")
@@ -64,6 +64,20 @@ let lowercasedString = string.lowercased() # The lower() method converts all upp
 let isLower = string.allSatisfy { $0.isLowercase } # The islower() method returns True if all cased characters in the string are lowercase and there is at least one cased character, False otherwise.
 let isDigit = string.allSatisfy { $0.isNumber }
 let isUpper = string.allSatisfy { $0.isUppercase } # The isupper() method returns True if all cased characters in the string are uppercase and there is at least one cased character, False otherwise.
+
+//Sorting a string:
+let originalString = "swift programming"
+let sortedString = String(originalString.sorted())
+print(sortedString)  // Output: "gimmnoprrrssttw"
+
+//Case Sensitivity: By default, the sorting is case-sensitive, meaning uppercase letters will be sorted before lowercase letters. If you want a case-insensitive sort, you can use a custom sorting closure:
+let sortedStringCaseInsensitive = String(originalString.sorted { 
+    $0.lowercased() < $1.lowercased() 
+})
+print(sortedStringCaseInsensitive)  // Output: " ggiimmnnooprrrsstw"
+
+
+//String slicing:
 ```
 
 ## Lists
@@ -155,65 +169,33 @@ let square = (i..<i+2).flatMap { x in
 ```
 
 
-List or String slicing in Python
+List slicing 
 
-- Resource
-    
-    [Understanding slice notation](https://stackoverflow.com/questions/509211/understanding-slice-notation)
-    
+```Swift
+let a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+//Items from start through stop-1:
+let slice1 = a[2..<5]  // [3, 4, 5]
+//Items from start through stop
+let slicedArray = arr[1...3]
+//Items from start through the end of the array:
+let slice2 = a[2...]  // [3, 4, 5, 6, 7, 8, 9]
+//Items from the beginning through stop-1:
+let slice3 = a[..<5]  // [1, 2, 3, 4, 5]
+//Copy of the whole array:
+let slice4 = a[0...]  // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-```python
-It's pretty simple really:
+// This will give you every second element in the array: [1, 3, 5, 7, 9]
+let slicedWithStep = stride(from: 0, to: a.count, by: 2).map { a[$0] }
 
-a[start:stop]  # items start through stop-1
-a[start:]      # items start through the rest of the array
-a[:stop]       # items from the beginning through stop-1
-a[:]           # a copy of the whole array
-There is also the step value, which can be used with any of the above:
-
-a[start:stop:step] # start through not past stop, by step
-The key point to remember is that the :stop value represents the first value
-that is not in the selected slice. So, the difference between stop and start is
-the number of elements selected (if step is 1, the default).
-
-The other feature is that start or stop may be a negative number, which means
-it counts from the end of the array instead of the beginning. So:
-
-a[-1]    # last item in the array
-a[-2:]   # last two items in the array
-a[:-2]   # everything except the last two items
-Similarly, step may be a negative number:
-
-a[::-1]    # all items in the array, reversed
-a[1::-1]   # the first two items, reversed
-a[:-3:-1]  # the last two items, reversed
-a[-3::-1]  # everything except the last two items, reversed
-Python is kind to the programmer if there are fewer items than you ask for. For
-example, if you ask for a[:-2] and a only contains one element, you get an
-empty list instead of an error. Sometimes you would prefer the error, so you
-have to be aware that this may happen.
-
-Relation to slice() object
-The slicing operator [] is actually being used in the above code with a slice()
-object using the : notation (which is only valid within []), i.e.:
-
-a[start:stop:step]
-is equivalent to:
-
-a[slice(start, stop, step)]
-Slice objects also behave slightly differently depending on the number of
-arguments, similarly to range(), i.e. both slice(stop) and slice(start, stop[,
-step]) are supported. To skip specifying a given argument, one might use None,
-so that e.g. a[start:] is equivalent to a[slice(start, None)] or a[::-1] is
-equivalent to a[slice(None, None, -1)].
-
-While the :-based notation is very helpful for simple slicing, the explicit use
-of slice() objects simplifies the programmatic generation of slicing.
-
-Sorting a string:
-sorted_string = ''.join(sorted(string))
-#orrrrr you can do:
-sorted(string) #but it turns it into a list
+//last item in the array
+let a = [1, 2, 3, 4, 5]
+if let lastItem = a.last {
+    print(lastItem)  // Output: 5
+}
+let lastTwoItems = Array(a.suffix(2))
+print(lastTwoItems)  // Output: [4, 5]
+let everythingExceptLastTwo = Array(a.dropLast(2))
+print(everythingExceptLastTwo)  // Output: [1, 2, 3]
 
 ```
 
