@@ -1,6 +1,7 @@
 # Data Structures
 
 *Important data structures for LeetCode*
+- what are closures
 
 ## Lists
 
