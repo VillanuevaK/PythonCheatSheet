@@ -5,6 +5,67 @@
 - what are functinoal programming paradigms (mapping, filtering, reducing)
 - Higher-Order Functions
 
+## Strings
+
+```python
+# ** split Function **
+let text = "Python is a fun programming language"
+let words = text.split(separator: " ")
+print(words)
+// Output: ["Python", "is", "a", "fun", "programming", "language"]
+
+# convert string to list
+let s = "abcd"
+let characters = Array(s)
+print(characters)
+// Output: ["a", "b", "c", "d"]
+
+# ** count Function **
+# returns the number of occurrences of a substring in the given string.
+let message = "python is popular programming language"
+let count = message.filter { $0 == "p" }.count
+print("Number of occurrence of p:", count)
+// Output: Number of occurrence of p: 4
+
+# The isnumeric() method returns True if all characters in a string are numeric characters. If not, it returns False.
+let s = "1242323"
+let isNumeric = s.allSatisfy { $0.isNumber }
+print(isNumeric) // Output: true
+
+# The find() method returns the index of first occurrence of the substring (if found). If not found, it returns -1.
+# check the index of 'fun'
+let message = "python is a fun programming language"
+if let index = message.range(of: "fun")?.lowerBound {
+    print(message.distance(from: message.startIndex, to: index))
+} else {
+    print(-1)
+}
+// Output: 12
+
+# The isalnum() method returns True if all characters in the string are alphanumeric (either alphabets or numbers). If not, it returns False.
+let name = "M3onicaGell22er"
+let isAlphanumeric = name.allSatisfy { $0.isLetter || $0.isNumber }
+print(isAlphanumeric)
+// Output: true
+
+# The isalpha() method returns True if all characters in the string are alphabets. If not, it returns False
+let name = "Monica"
+let isAlpha = name.allSatisfy { $0.isLetter }
+print(isAlpha)
+// Output: true
+
+# other important functions
+let string = "  Hello, World!  "
+let strippedString = string.trimmingCharacters(in: .whitespaces) #The strip() method returns a copy of the string by removing both the leading and the trailing characters (based on the string argument passed).
+
+let uppercasedString = string.uppercased() # The upper() method converts all lowercase characters in a string into uppercase characters and returns it.
+
+let lowercasedString = string.lowercased() # The lower() method converts all uppercase characters in a string into lowercase characters and returns it.
+let isLower = string.allSatisfy { $0.isLowercase } # The islower() method returns True if all cased characters in the string are lowercase and there is at least one cased character, False otherwise.
+let isDigit = string.allSatisfy { $0.isNumber }
+let isUpper = string.allSatisfy { $0.isUppercase } # The isupper() method returns True if all cased characters in the string are uppercase and there is at least one cased character, False otherwise.
+```
+
 ## Lists
 
 > Lists are used to store multiple items in a single variable
@@ -388,67 +449,6 @@ tuple = (1,2,3,1)
 
 tuple.count(1) # returns occurence of an item
 tuple.index(1) # returns index of 1 in array
-```
-
-## Strings
-
-```python
-# ** split Function **
-let text = "Python is a fun programming language"
-let words = text.split(separator: " ")
-print(words)
-// Output: ["Python", "is", "a", "fun", "programming", "language"]
-
-# convert string to list
-let s = "abcd"
-let characters = Array(s)
-print(characters)
-// Output: ["a", "b", "c", "d"]
-
-# ** count Function **
-# returns the number of occurrences of a substring in the given string.
-let message = "python is popular programming language"
-let count = message.filter { $0 == "p" }.count
-print("Number of occurrence of p:", count)
-// Output: Number of occurrence of p: 4
-
-# The isnumeric() method returns True if all characters in a string are numeric characters. If not, it returns False.
-let s = "1242323"
-let isNumeric = s.allSatisfy { $0.isNumber }
-print(isNumeric) // Output: true
-
-# The find() method returns the index of first occurrence of the substring (if found). If not found, it returns -1.
-# check the index of 'fun'
-let message = "python is a fun programming language"
-if let index = message.range(of: "fun")?.lowerBound {
-    print(message.distance(from: message.startIndex, to: index))
-} else {
-    print(-1)
-}
-// Output: 12
-
-# The isalnum() method returns True if all characters in the string are alphanumeric (either alphabets or numbers). If not, it returns False.
-let name = "M3onicaGell22er"
-let isAlphanumeric = name.allSatisfy { $0.isLetter || $0.isNumber }
-print(isAlphanumeric)
-// Output: true
-
-# The isalpha() method returns True if all characters in the string are alphabets. If not, it returns False
-let name = "Monica"
-let isAlpha = name.allSatisfy { $0.isLetter }
-print(isAlpha)
-// Output: true
-
-# other important functions
-let string = "  Hello, World!  "
-let strippedString = string.trimmingCharacters(in: .whitespaces) #The strip() method returns a copy of the string by removing both the leading and the trailing characters (based on the string argument passed).
-
-let uppercasedString = string.uppercased() # The upper() method converts all lowercase characters in a string into uppercase characters and returns it.
-
-let lowercasedString = string.lowercased() # The lower() method converts all uppercase characters in a string into lowercase characters and returns it.
-let isLower = string.allSatisfy { $0.isLowercase } # The islower() method returns True if all cased characters in the string are lowercase and there is at least one cased character, False otherwise.
-let isDigit = string.allSatisfy { $0.isNumber }
-let isUpper = string.allSatisfy { $0.isUppercase } # The isupper() method returns True if all cased characters in the string are uppercase and there is at least one cased character, False otherwise.
 ```
 
 # Built-in or Library functions
