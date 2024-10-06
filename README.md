@@ -2,6 +2,8 @@
 
 *Important data structures for LeetCode*
 - what are closures
+- what are functinoal programming paradigms (mapping, filtering, reducing)
+- Higher-Order Functions
 
 ## Lists
 
