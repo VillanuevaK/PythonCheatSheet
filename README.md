@@ -1,22 +1,3 @@
-# Python Cheat Sheet
-
-A Cheat Sheet 📜 to **revise** Python syntax in **less time**. Particularly useful for solving Data Structure and Algorithmic problems or a quick overview before an interview.
-
-> [Click here for similar Java Resource (not made by me)](https://drive.google.com/file/d/1ao4ZA28zzBttDkuS6MLQI52gDs_CJZEm/view) <br>
-> Get a PDF of this sheet at the end. <br>
-> Leave a ⭐ if you like the cheat sheet (contributions welcome!) <br>
-
-# Basics
-
-- Data Types
-
-    ![Untitled](https://user-images.githubusercontent.com/59110866/173563442-1a6fa3d2-b569-4eb0-99cc-9b91cc8be1eb.png)
-
-- Operators and it’s precedence
-    
-    ![Untitled](https://user-images.githubusercontent.com/47276307/172329850-61fc0809-a4b0-416c-848b-1c502ecb4772.jpg)
-    
-
 # Data Structures
 
 *Important data structures for LeetCode*
@@ -30,23 +11,49 @@ A Cheat Sheet 📜 to **revise** Python syntax in **less time**. Particularly us
     ![Untitled](https://user-images.githubusercontent.com/47276307/172330098-1c5f0a6e-7f80-4f4f-9be6-1d734e2c70cd.jpg)
     
 
-```python
-nums = [1,2,3]
+```swift
+var nums = [1, 2, 3]
 
-nums.index(1) # returns index
-nums.append(1) # appends 1
-nums.insert(0,10) # inserts 10 at 0th index
-nums.remove(3) # removes all instances of 3
-nums.copy(1) # returns copy of the list
-nums.count(1) # returns no.of times '1' is present in the list
-nums.extend(someOtherList) # ...
-nums.pop() # pops last element [which element to pop can also be given as optional argument]
-nums.reverse() # reverses original list (nums in this case)
-nums.sort() # sorts list [does NOT return sorted list]
-#Python's default sort uses Tim Sort, which is a combination of both merge sort and insertion sort.
+var nums = [1, 2, 3]
 
-#List multiplication (get a list of size 'length' with all 1's)
-list1 = [1]*length
+// Find the index of the first occurrence of an element
+if let index = nums.firstIndex(of: 1) {
+    print("Index of 1 is \(index)") //is 0
+}
+
+// Append an element to the end of the array
+nums.append(1) // [1, 2, 3, 1]
+
+// Insert an element at a specific index
+nums.insert(10, at: 0) // [10, 1, 2, 3, 1]
+
+// Remove the first occurrence of an element
+if let index = nums.firstIndex(of: 3) {
+    nums.remove(at: index) // [10, 1, 2, 1]
+}
+
+// Create a copy of the array
+let numsCopy = nums // [10, 1, 2, 1]
+
+// Count the number of occurrences of an element
+let countOfOnes = nums.filter { $0 == 1 }.count // returns 2
+
+// Extend the array with another array (concatenate two arrays)
+let someOtherList = [4, 5, 6]
+nums.append(contentsOf: someOtherList) // [10, 1, 2, 1, 4, 5, 6]
+
+// Pop the last element from the array
+let lastElement = nums.popLast() // Removes and returns 6
+
+// Reverse the array in place
+nums.reverse() // [5, 4, 1, 2, 1, 10]
+
+// Sort the array in place (ascending order)
+nums.sort() // [1, 1, 2, 4, 5, 10]
+
+// Creating an array with repeated elements (similar to list multiplication in Python)
+let list1 = Array(repeating: 1, count: 5) // [1, 1, 1, 1, 1]
+
 
 ```
 ## Matrices
