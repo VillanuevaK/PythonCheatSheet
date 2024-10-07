@@ -1,6 +1,7 @@
 # Data Structures
 
 *Important data structures for LeetCode*
+- how to deal with strings
 - what are closures
 - what are functinoal programming paradigms (mapping, filtering, reducing)
 - Higher-Order Functions
@@ -78,6 +79,45 @@ print(sortedStringCaseInsensitive)  // Output: " ggiimmnnooprrrsstw"
 
 
 //String slicing:
+// 1. Slicing with Start and Stop Indices: You can use index(_:offsetBy:) and substring(with:) methods to extract substrings.
+let str = "Hello, Swift Programming"
+let startIndex = str.index(str.startIndex, offsetBy: 7) // 'S'
+let endIndex = str.index(str.startIndex, offsetBy: 12) // // This points to the space after 't'
+
+let substring = str[startIndex..<endIndex] // "Swift"
+print(substring)  // Output: "Swift"
+
+// 2. Slicing from Start to End:
+let substringFromStart = str[startIndex...] // "Swift Programming"
+print(substringFromStart)  // Output: "Swift Programming"
+
+// 3. Full Copy of the String
+let copyOfString = str // Copies the entire string
+
+// 4. Using a Step Value
+let step = 2
+let stepSlice = String(str.enumerated().compactMap { index, character in
+    index % step == 0 ? character : nil
+})
+print(stepSlice)  // Output "Hlo wf rgamn"
+
+// 5. Getting the Last Item
+let lastTwoChars = String(str.suffix(1))
+//if u want a char...
+let lastChar = str.last // Optional("g")
+
+// 6. Getting the Last Two Items
+let lastTwoChars = String(str.suffix(2)) // "ng"
+print(lastTwoChars) // Output: "ng"
+
+// 7. Everything Except the Last Two Items
+let everythingExceptLastTwo = String(str.prefix(str.count - 2)) // "Hello, Swift Programm"
+print(everythingExceptLastTwo) // Output: "Hello, Swift Programm"
+
+// Reversing a string:
+let originalString = "Hello, Swift!"
+let reversedString = String(originalString.reversed())
+print(reversedString)  // Output: "!tfiwS ,olleH"
 ```
 
 ## Lists
