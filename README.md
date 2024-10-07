@@ -257,49 +257,61 @@ print(everythingExceptLastTwo)  // Output: [1, 2, 3]
     ![Untitled](https://user-images.githubusercontent.com/47276307/172330107-e68e3228-1c76-4bfb-bb38-04d18f94d5b9.jpg)
     
 
-```python
-dict = {'a':1,'b':2,'c':3}
+```Swift
+// 1. Create a dictionary
+var dict: [String: Int] = ["a": 1, "b": 2, "c": 3]
 
-dict.keys() # returns list of keys of dictionary
-dict.values() # returns list of values of dictionary
-dict.get('a') # returns value for any corresponding key
-dict.items() # returns [('a',1),('b',2),('c',3)]
-dict.copy() # returns copy of the dictionary
-# NOTE : items() Returns view object that will be updated with any future
-# changes to dict
-dict.pop(KEY) # pops key-value pair with that key
-dict.popitem() # removes most recent pair added
-dict.setDefault(KEY,DEFAULT_VALUE)
-# returns value of key, if key exists, else default value returned
-# If the key exist, this parameter(DEFAULT_VALUE) has no effect.
-# If the key does not exist, DEFAULT_VALUE becomes the key's value. 2nd
-# argument's default is None.
-dict.update({KEY:VALUE})
-# inserts pair in dictionary if not present, if present, corresponding value is
-# overriden (not key)
-# defaultdict ensures that if any element is accessed that is not present in
-# the dictionary
-# it will be created and error will not be thrown (which happens in normal dictionary)
-# Also, the new element created will be of argument type, for example in the below line
-# an element of type 'list' will be made for a Key that does not exist
-myDictionary = defaultdict(list)
+// 2. Returns an array of keys of the dictionary
+let keys = Array(dict.keys) // Output: ["a", "b", "c"]
 
-# To check if key is in dict():
-if('key' in my_dic):
-#Note: tuple can be used as a key
+// 3. Returns an array of values of the dictionary
+let values = Array(dict.values) // Output: [1, 2, 3]
 
-# Sorting the dictionary by keys
-# Note: sorted() gives you a list of tuples!, so we use dict() again
-sorted_by_keys = dict(sorted(my_dict.items()))
+// 4. Returns value for any corresponding key
+let valueA = dict["a"] // Output: Optional(1)
 
-# Sorting the dictionary by values
-sorted_by_values = dict(sorted(my_dict.items(), key=lambda item: item[1]))
+// 5. Returns an array of key-value pairs as tuples
+let items = Array(dict) // Output: [("a", 1), ("b", 2), ("c", 3)]
 
-# Sorting the dictionary by values in reverse order
-sorted_by_values_desc = dict(sorted(my_dict.items(), key=lambda item: item[1], reverse=True))
+// 6. Returns a copy of the dictionary
+let dictCopy = dict // Output: ["a": 1, "b": 2, "c": 3]
 
-# itterate through dict
-for k,v in map_s.items()
+// 7. Pops key-value pair with that key
+dict.removeValue(forKey: "a") // Removes the pair with key "a"
+
+// 8. Removes and returns the most recent pair added (in Swift, you usually have to keep track of insertion order)
+let lastItem = dict.removeLast() // Removes and returns the last key-value pair (if maintaining order is required)
+
+// 9. Sets the value for the key, if key exists; else, it adds the key with the default value
+let defaultValue = dict["d", default: 4] // If 'd' does not exist, it will return 4 and add 'd': 4
+
+// 10. Inserts or updates the key-value pair in the dictionary
+dict["e"] = 5 // Adds 'e' with value 5 or updates it if 'e' exists
+
+// 11. Check if a key is in the dictionary
+if dict.keys.contains("key") {
+    print("Key exists.")
+}
+
+// 12. Sorting the dictionary by keys
+let sortedByKeys = dict.sorted(by: { $0.key < $1.key }) // Returns an array of tuples sorted by keys
+
+// 13. Sorting the dictionary by values
+let sortedByValues = dict.sorted(by: { $0.value < $1.value }) // Returns an array of tuples sorted by values
+
+// 14. Sorting the dictionary by values in reverse order
+let sortedByValuesDesc = dict.sorted(by: { $0.value > $1.value }) // Returns an array of tuples sorted by values in descending order
+
+// 15. Iterate through the dictionary
+for (key, value) in dict {
+    print("\(key): \(value)") // Prints key-value pairs
+}
+
+// 16. Default dict kind of
+var dict: [String: Int] = [:]
+let key = "key1"
+let value = dict[key] ?? 0 // Use 0 as the default if the key doesn't exist
+dict[key] = value + 1 // Increment the value
 ```
 
 ## Counter
