@@ -330,38 +330,6 @@ if let value = dict[("Apple", 1)] {
 }
 ```
 
-## Counter
-
-> Python Counter is a container that will hold the count of each of the elements present in the container. The counter is a sub-class available inside the dictionary class. Specifically used for element frequencies
-> 
-
-*Pretty similar to dictionary, in fact I use* **defaultdict(int)** *most of the time* 
-
-```python
-from collections import Counter #(capital 'C')
-# can also be used as 'collections.Counter()' in code
-
-list1 = ['x','y','z','x','x','x','y', 'z']
-
-# Initialization
-Counter(list1) # => Counter({'x': 4, 'y': 2, 'z': 2})
-Counter("Welcome to Guru99 Tutorials!") # => Counter({'o': 3, ' ': 3, 'u': 3, 'e': 2.....})
-
-# Updating
-counterObject = collections.Counter(list1)
-counterObject.keys() = [ 'x' , 'y' , 'z' ]
-most_common_element = counterObject.most_common(1) # [('x', 4)]
-counterObject.update("some string") # => Counter({'o': 3, 'u': 3, 'e': 2, 's': 2})
-counterObject['s'] += 1 # Increase/Decrease frequency
-
-# Accessing
-frequency_of_s = counterObject['s']
-
-# Deleting
-del couterObject['s']
-
-```
-
 ## Deque
 
 > A double-ended queue, or deque, has the feature of adding and removing elements from either end.
