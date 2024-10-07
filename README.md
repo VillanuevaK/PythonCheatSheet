@@ -337,7 +337,7 @@ List slicing
 ```Swift
 let a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 //Items from start through stop-1:
-let slice1 = a[2..<5]  // [3, 4, 5]
+let slice1 = a[2..<5]  // [3, 4, 5] //REMEMBER: convert back into an Array()
 //Items from start through stop
 let slicedArray = arr[1...3]
 //Items from start through the end of the array:
