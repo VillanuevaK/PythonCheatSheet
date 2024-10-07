@@ -108,18 +108,23 @@ for (index, fruit) in fruits.enumerated() {
 // Item 1: Banana
 // Item 2: Cherry
 
+// to avoid forcing the optional
+if let matchIndex = tracker[match] {
+    return [i, matchIndex]
+}
+
 ```
 
 ## Strings
 
 ```Swift
-# ** split Function **
+// ** split Function **
 let text = "Python is a fun programming language"
 let words = text.split(separator: " ")
 print(words)
 // Output: ["Python", "is", "a", "fun", "programming", "language"]
 
-# convert string to list
+// convert string to list
 let s = "abcd"
 let characters = Array(s)
 print(characters)
@@ -129,14 +134,14 @@ let s = "Hello"
 let sStrings = s.map { String($0) } // This will be an array of strings: ["H", "e", "l", "l", "o"]
 
 
-# ** count Function **
-# returns the number of occurrences of a substring in the given string.
+//# ** count Function **
+//# returns the number of occurrences of a substring in the given string.
 let message = "python is popular programming language"
 let count = message.filter { $0 == "p" }.count
 print("Number of occurrence of p:", count)
 // Output: Number of occurrence of p: 4
 
-# The isnumeric() method returns True if all characters in a string are numeric characters. If not, it returns False.
+//# The isnumeric() method returns True if all characters in a string are numeric characters. If not, it returns False.
 let s = "1242323"
 let isNumeric = s.allSatisfy { $0.isNumber }
 print(isNumeric) // Output: true
