@@ -444,6 +444,42 @@ if let value = dict[("Apple", 1)] {
 }
 ```
 
+## Functional Programming 
+```Swift
+// 1. .map{expression} allows you to 1 to 1 'map' a each value - it applies a given closure to each element of a collection, returning a new collection where each element is the result of the closure's transformation
+// Return a new array containing the squares of each number.
+let numbers = [1, 2, 3, 4]
+let squares = numbers.map { $0 * $0 } // Output: [1, 4, 9, 16]
+
+// 2. .filter{condition} applies a given closure to each element in a collection and returns a new collection where each element 'passed'
+let numbers = [1, 2, 3, 4, 5, 6]
+let evens = numbers.filter { $0 % 2 == 0 } // Output: [2, 4, 6]
+
+// 3. .reduce(initialVal, {expression}) allows you to take a collection and returns a cumulative outcome (like sum) of the whole thing
+let numbers = [1, 2, 3, 4]
+let sum = numbers.reduce(0, { $0 + $1 }) // Output: 10
+
+// 4. Counter with reduce - note: use into: to modify a mutable collection directly
+let result = dictionary.reduce([:]) { (accumulator, element) in
+    // Your logic here, using `accumulator` and `element`
+}
+// can be done with
+let fruits = ["apple", "banana", "apple", "orange", "banana", "apple"]
+let fruitCount = fruits.reduce(into: [:]) { counts, fruit in
+    counts[fruit, default: 0] += 1
+}
+//or
+let counts = fruits.reduce(into: [:]) { $0[$1, default: 0] += 1 }
+
+// 5. Grouping anagrams
+let strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+let groupedAnagrams = Dictionary(grouping: strs, by: { String($0.sorted()) })
+// Output: ["aet": ["eat", "tea", "ate"], "ant": ["tan", "nat"], "bat": ["bat"]]
+
+// 6. Fancy sorting (first n elements)
+let topK = Array(numbers.sorted(by: >).prefix(k)
+```
+
 ## Deque
 
 > A double-ended queue, or deque, has the feature of adding and removing elements from either end.
