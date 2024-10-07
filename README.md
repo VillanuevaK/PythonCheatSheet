@@ -315,6 +315,19 @@ dict[key] = value + 1 // Increment the value
 
 or even better:
 counts[element, default: 0] += 1
+
+//16.2 keys
+// A. Define a dictionary with a tuple as the key
+var dict: [ (String, Int) : String ] = [:]
+
+// B. Add entries to the dictionary
+dict[("Apple", 1)] = "First entry"
+dict[("Banana", 2)] = "Second entry"
+
+// C. Accessing values using tuple keys
+if let value = dict[("Apple", 1)] {
+    print("Value for ('Apple', 1): \(value)") // Output: First entry
+}
 ```
 
 ## Counter
