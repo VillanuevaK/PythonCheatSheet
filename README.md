@@ -6,6 +6,105 @@
 - what are functinoal programming paradigms (mapping, filtering, reducing)
 - Higher-Order Functions
 
+## Flow of control
+```Swift
+// 1. If Statements
+let number = 10
+if number > 5 {
+    print("Number is greater than 5")
+} else if number == 5 {
+    print("Number is equal to 5")
+} else {
+    print("Number is less than 5")
+}
+
+// 2. Switch Statements
+let grade = "A"
+switch grade {
+case "A":
+    print("Excellent")
+case "B", "C":
+    print("Good")
+case "D":
+    print("Pass")
+default:
+    print("Fail")
+}
+// Note: Swift's switch statements must be exhaustive or have a default case.
+
+// 3. For Loops
+// For loop with a range
+for i in 1...5 { // Closed range (includes both ends)
+    print(i) // Output: 1, 2, 3, 4, 5
+}
+
+// Loop through an array
+let numbers = [10, 20, 30]
+for number in numbers {
+    print(number)
+}
+
+// Using stride to create steps
+for i in stride(from: 0, through: 10, by: 2) { // Includes 10
+    print(i) // Output: 0, 2, 4, 6, 8, 10
+}
+
+// 4. While Loops
+var count = 0
+while count < 5 {
+    print(count)
+    count += 1
+}
+
+// 5. Repeat-While Loop
+var x = 0
+repeat {
+    print(x)
+    x += 1
+} while x < 5
+// Executes the loop body at least once before checking the condition
+
+// 6. Early Exit with guard
+func checkAge(age: Int) {
+    guard age >= 18 else {
+        print("You must be at least 18")
+        return
+    }
+    print("Welcome!")
+}
+// Use guard to handle conditions that must be true for the code to continue
+
+// 7. Break and Continue
+// Break: Exits the loop immediately
+for i in 1...5 {
+    if i == 3 {
+        break // Loop stops at 3
+    }
+    print(i) // Output: 1, 2
+}
+
+// Continue: Skips to the next iteration of the loop
+for i in 1...5 {
+    if i == 3 {
+        continue // Skip 3
+    }
+    print(i) // Output: 1, 2, 4, 5
+}
+
+//enumerate
+let fruits = ["Apple", "Banana", "Cherry"]
+
+// Using enumerated() to get both the index and the element
+for (index, fruit) in fruits.enumerated() {
+    print("Item \(index): \(fruit)")
+}
+// Output:
+// Item 0: Apple
+// Item 1: Banana
+// Item 2: Cherry
+
+```
+
 ## Strings
 
 ```Swift
@@ -437,28 +536,62 @@ Output will be:
     ![Untitled](https://user-images.githubusercontent.com/47276307/172330132-7a785f5f-bbc6-43b9-b82f-794190813787.jpg)
     
 
-```python
-set = {1,2,3}
+```swift
+// 1. Initialize a Set in Swift
+var set: Set<Int> = [1, 2, 3]
 
-set.add(item)
-set.remove(item)
-set.discard(item) | set.remove(item)
-# removes item | remove will throw error if item is not there, discard will not
-set.pop() # removes random item (since unordered)
+// 2. Add an item to the set
+set.insert(4) // Adds 4 to the set
 
-set.isdisjoint(anotherSet) # returns true if no common elements
-set.issubset(anotherSet) # returns true if all elements from anotherSet is present in original set
-set.issuperset(anotherSet) # returns true if all elements from original set is present in anotherSet
+// 3. Remove an item from the set
+set.remove(2) // Removes 2 from the set, if it exists
 
-set.difference(anotherSet) # returns set containing items ONLY in first set
-set.difference_update(anotherSet) # removes common elements from first set [no new set is created or returned]
-set.intersection(anotherSet) # returns new set with common elements
-set.intersection_update(anotherSet) # modifies first set keeping only common elements
-set.symmetric_difference(anotherSet) # returns set containing all non-common elements of both sets
-set.symmetric_difference_update(anotherSet) # same as symmetric_difference but changes are made on original set
+// 4. Safely remove an item using optional handling (like discard)
+if let removedItem = set.remove(5) {
+    print("Removed \(removedItem)")
+} else {
+    print("Item not found") // No error thrown if the item does not exist
+}
 
-set.union(anotherSet) # ...
-set.update(anotherSet) # adds anotherSet without duplicate
+// 5. Pop a random item from the set
+if let randomElement = set.popFirst() {
+    print("Randomly removed item: \(randomElement)")
+}
+
+// 6. Check if two sets have no common elements
+let anotherSet: Set<Int> = [5, 6]
+let isDisjoint = set.isDisjoint(with: anotherSet) // Returns true if no common elements
+
+// 7. Check if one set is a subset of another
+let isSubset = set.isSubset(of: anotherSet) // Returns true if all elements of set are in anotherSet
+
+// 8. Check if one set is a superset of another
+let isSuperset = set.isSuperset(of: anotherSet) // Returns true if all elements of anotherSet are in set
+
+// 9. Find the difference between two sets
+let differenceSet = set.subtracting(anotherSet) // Elements only in the first set
+
+// 10. Update the set to keep only unique elements not in anotherSet
+set.subtract(anotherSet) // Removes common elements directly from set
+
+// 11. Find the intersection of two sets
+let intersectionSet = set.intersection(anotherSet) // Returns set with common elements
+
+// 12. Update the set to keep only the intersection of elements
+set.formIntersection(anotherSet) // Modifies set to keep only common elements
+
+// 13. Find the symmetric difference (non-common elements) between two sets
+let symmetricDifferenceSet = set.symmetricDifference(anotherSet) // Returns non-common elements
+
+// 14. Update the set with the symmetric difference (non-common elements)
+set.formSymmetricDifference(anotherSet) // Keeps only non-common elements in the original set
+
+// 15. Union of two sets (combining without duplicates)
+let unionSet = set.union(anotherSet) // Combines both sets without duplicates
+
+// 16. Update the original set with another set (equivalent to union)
+set.formUnion(anotherSet) // Adds all elements of anotherSet to set without duplicates
+
 
 ```
 
@@ -471,11 +604,9 @@ set.update(anotherSet) # adds anotherSet without duplicate
     Similar to list
     
 
-```python
-tuple = (1,2,3,1)
-
-tuple.count(1) # returns occurence of an item
-tuple.index(1) # returns index of 1 in array
+```swift
+// is hashable
+let tuple = (1, 2, 3, 1)
 ```
 
 # Built-in or Library functions
