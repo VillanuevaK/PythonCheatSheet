@@ -244,8 +244,7 @@ print(reversedString)  // Output: "!tfiwS ,olleH"
 
 ```swift
 var nums = [1, 2, 3]
-
-var nums = [1, 2, 3]
+print(nums.count) //3
 
 // Find the index of the first occurrence of an element
 if let index = nums.firstIndex(of: 1) {
