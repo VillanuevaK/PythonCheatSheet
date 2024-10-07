@@ -130,6 +130,8 @@ let characters = Array(s)
 print(characters)
 // This will be an array of characters: ['a', 'b', 'c', 'd']
 
+String(s.sorted()) // this can converst array of characters to string
+
 let s = "Hello"
 let sStrings = s.map { String($0) } // This will be an array of strings: ["H", "e", "l", "l", "o"]
 
