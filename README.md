@@ -38,6 +38,11 @@ for i in 1...5 { // Closed range (includes both ends)
     print(i) // Output: 1, 2, 3, 4, 5
 }
 
+//without a closed range
+for i in 0..<5 {
+    print(i)
+}
+
 // Loop through an array
 let numbers = [10, 20, 30]
 for number in numbers {
