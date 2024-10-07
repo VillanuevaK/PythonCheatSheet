@@ -123,7 +123,11 @@ print(words)
 let s = "abcd"
 let characters = Array(s)
 print(characters)
-// Output: ["a", "b", "c", "d"]
+// This will be an array of characters: ['a', 'b', 'c', 'd']
+
+let s = "Hello"
+let sStrings = s.map { String($0) } // This will be an array of strings: ["H", "e", "l", "l", "o"]
+
 
 # ** count Function **
 # returns the number of occurrences of a substring in the given string.
