@@ -460,7 +460,7 @@ let numbers = [1, 2, 3, 4]
 let sum = numbers.reduce(0, { $0 + $1 }) // Output: 10
 
 // 4. Counter with reduce - note: use into: to modify a mutable collection directly
-let result = dictionary.reduce([:]) { (accumulator, element) in
+let result = fruits.reduce([:]) { (accumulator, element) in
     // Your logic here, using `accumulator` and `element`
 }
 // can be done with
