@@ -87,6 +87,15 @@ let endIndex = str.index(str.startIndex, offsetBy: 12) // // This points to the 
 let substring = str[startIndex..<endIndex] // "Swift"
 print(substring)  // Output: "Swift"
 
+// OR DO THIS
+let str = "Hello, Swift Programming"
+
+// Drop the first 7 characters to skip "Hello, "
+// Then take the next 5 characters to get "Swift"
+let substring = str.dropFirst(7).prefix(5)
+
+print(substring)  // Output: "Swift"
+
 // 2. Slicing from Start to End:
 let substringFromStart = str[startIndex...] // "Swift Programming"
 print(substringFromStart)  // Output: "Swift Programming"
