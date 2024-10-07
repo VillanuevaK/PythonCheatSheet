@@ -312,6 +312,9 @@ var dict: [String: Int] = [:]
 let key = "key1"
 let value = dict[key] ?? 0 // Use 0 as the default if the key doesn't exist
 dict[key] = value + 1 // Increment the value
+
+or even better:
+counts[element, default: 0] += 1
 ```
 
 ## Counter
