@@ -478,6 +478,10 @@ let groupedAnagrams = Dictionary(grouping: strs, by: { String($0.sorted()) })
 
 // 6. Fancy sorting (first n elements)
 let topK = Array(numbers.sorted(by: >).prefix(k)
+
+// 7. topK
+// use reduce to get the counter, then sort by value, map to get only keys, and get the prefix
+Array(nums.reduce(into: [:]) {$0[$1, default: 0]+=1}.sorted(by: {$0.value > $1.value}).map{$0.key}.prefix(k))
 ```
 
 ## Deque
