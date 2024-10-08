@@ -319,22 +319,14 @@ let transposedMatrix = matrix[0].indices.map { colIndex in
     matrix.map { entireRow in entireRow[colIndex] }
 }
 
-
-//flatMap for something similar to list compression
-let board = [
-    [1, 2, 3, 4],
-    [5, 6, 7, 8],
-    [9, 10, 11, 12],
-    [13, 14, 15, 16]
+// flatten a 3x3 matrix into a one-dimensional array in Swift
+let matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
 ]
-let i = 1
-let j = 1
-let square = (i..<i+2).flatMap { x in
-    (j..<j+2).map { y in
-        board[x][y]
-    }
-}
-// Result: [6, 7, 10, 11]
+
+let flattened = matrix.flatMap { $0 } // Output: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 ```
 
