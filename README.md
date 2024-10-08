@@ -122,6 +122,12 @@ if let matchIndex = tracker[match] {
     return [i, matchIndex]
 }
 
+// using zip in a loop
+// If s = "abc" and t = "def", then zip(s, t) will create a sequence of tuples: [(a, d), (b, e), (c, f)]
+for (c1,c2) in zip(s, t) {
+    dict[c1, default: 0] += 1
+    dict[c2, default: 0] -= 1
+}
 ```
 
 ## Strings
