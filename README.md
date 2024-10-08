@@ -314,11 +314,9 @@ let matrix = [
     [7, 8, 9]
 ]
 
-// To transpose a matrix in Swift (turn rows into columns for easy access of just columns)
-let transposedMatrix = Array(zip(matrix[0], matrix[1], matrix[2])) // Result: [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
 // To make it more generic and handle matrices of any size
-let transposedMatrix = matrix[0].indices.map { index in
-    matrix.map { $0[index] }
+let transposedMatrix = matrix[0].indices.map { colIndex in
+    matrix.map { entireRow in entireRow[colIndex] }
 }
 
 
