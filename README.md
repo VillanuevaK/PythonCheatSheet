@@ -53,6 +53,15 @@ for number in numbers {
 for i in stride(from: 0, through: 10, by: 2) { // Includes 10
     print(i) // Output: 0, 2, 4, 6, 8, 10
 }
+//backwards way 1:
+for i in stride(from: 10, to: 0, by: -1) {
+    print(i) // Prints 10, 9, 8, ..., 1
+}
+//backwards way 2:
+for i in stride(from: 10, through: 1, by: -1) {
+    print(i) // Prints 10, 9, 8, ..., 1
+}
+
 
 // 4. While Loops
 var count = 0
