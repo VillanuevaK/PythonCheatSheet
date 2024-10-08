@@ -328,6 +328,10 @@ let matrix = [
 
 let flattened = matrix.flatMap { $0 } // Output: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
+// flattening to get a certain block of the matrix using start and end rows and columns
+let block = board[rStart...rEnd].flatMap {
+    $0[cStart...cEnd]
+}.filter{$0 != "."}
 ```
 
 
