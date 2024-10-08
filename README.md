@@ -307,7 +307,7 @@ let list1 = Array(repeating: 1, count: 5) // [1, 1, 1, 1, 1]
 
 ```
 ## Matrices
-```
+```Swift
 let matrix = [
     [1, 2, 3],
     [4, 5, 6],
@@ -491,6 +491,88 @@ let topK = Array(numbers.sorted(by: >).prefix(k)
 Array(nums.reduce(into: [:]) {$0[$1, default: 0]+=1}.sorted(by: {$0.value > $1.value}).map{$0.key}.prefix(k))
 ```
 
+## Sets
+
+> A set is a collection which is unordered, immutable, unindexed, No Duplicates.
+> 
+- *Operations Time Complexities*
+    
+    ![Untitled](https://user-images.githubusercontent.com/47276307/172330132-7a785f5f-bbc6-43b9-b82f-794190813787.jpg)
+    
+
+```swift
+// 1. Initialize a Set in Swift
+var set: Set<Int> = [1, 2, 3]
+
+// 2. Add an item to the set
+set.insert(4) // Adds 4 to the set
+
+// 3. Remove an item from the set
+set.remove(2) // Removes 2 from the set, if it exists
+
+// 4. Safely remove an item using optional handling (like discard)
+if let removedItem = set.remove(5) {
+    print("Removed \(removedItem)")
+} else {
+    print("Item not found") // No error thrown if the item does not exist
+}
+
+// 5. Pop a random item from the set
+if let randomElement = set.popFirst() {
+    print("Randomly removed item: \(randomElement)")
+}
+
+// 6. Check if two sets have no common elements
+let anotherSet: Set<Int> = [5, 6]
+let isDisjoint = set.isDisjoint(with: anotherSet) // Returns true if no common elements
+
+// 7. Check if one set is a subset of another
+let isSubset = set.isSubset(of: anotherSet) // Returns true if all elements of set are in anotherSet
+
+// 8. Check if one set is a superset of another
+let isSuperset = set.isSuperset(of: anotherSet) // Returns true if all elements of anotherSet are in set
+
+// 9. Find the difference between two sets
+let differenceSet = set.subtracting(anotherSet) // Elements only in the first set
+
+// 10. Update the set to keep only unique elements not in anotherSet
+set.subtract(anotherSet) // Removes common elements directly from set
+
+// 11. Find the intersection of two sets
+let intersectionSet = set.intersection(anotherSet) // Returns set with common elements
+
+// 12. Update the set to keep only the intersection of elements
+set.formIntersection(anotherSet) // Modifies set to keep only common elements
+
+// 13. Find the symmetric difference (non-common elements) between two sets
+let symmetricDifferenceSet = set.symmetricDifference(anotherSet) // Returns non-common elements
+
+// 14. Update the set with the symmetric difference (non-common elements)
+set.formSymmetricDifference(anotherSet) // Keeps only non-common elements in the original set
+
+// 15. Union of two sets (combining without duplicates)
+let unionSet = set.union(anotherSet) // Combines both sets without duplicates
+
+// 16. Update the original set with another set (equivalent to union)
+set.formUnion(anotherSet) // Adds all elements of anotherSet to set without duplicates
+
+
+```
+
+## Tuples
+
+> A [tuple](https://www.scaler.com/topics/python/tuples-in-python/) is a collection which is ordered, unchangeable and can contain duplicate values
+> 
+- *Operations Time Complexities*
+    
+    Similar to list
+    
+
+```swift
+// is hashable
+let tuple = (1, 2, 3, 1)
+```
+
 ## Deque
 
 > A double-ended queue, or deque, has the feature of adding and removing elements from either end.
@@ -589,87 +671,6 @@ Output will be:
 20
 ```
 
-## Sets
-
-> A set is a collection which is unordered, immutable, unindexed, No Duplicates.
-> 
-- *Operations Time Complexities*
-    
-    ![Untitled](https://user-images.githubusercontent.com/47276307/172330132-7a785f5f-bbc6-43b9-b82f-794190813787.jpg)
-    
-
-```swift
-// 1. Initialize a Set in Swift
-var set: Set<Int> = [1, 2, 3]
-
-// 2. Add an item to the set
-set.insert(4) // Adds 4 to the set
-
-// 3. Remove an item from the set
-set.remove(2) // Removes 2 from the set, if it exists
-
-// 4. Safely remove an item using optional handling (like discard)
-if let removedItem = set.remove(5) {
-    print("Removed \(removedItem)")
-} else {
-    print("Item not found") // No error thrown if the item does not exist
-}
-
-// 5. Pop a random item from the set
-if let randomElement = set.popFirst() {
-    print("Randomly removed item: \(randomElement)")
-}
-
-// 6. Check if two sets have no common elements
-let anotherSet: Set<Int> = [5, 6]
-let isDisjoint = set.isDisjoint(with: anotherSet) // Returns true if no common elements
-
-// 7. Check if one set is a subset of another
-let isSubset = set.isSubset(of: anotherSet) // Returns true if all elements of set are in anotherSet
-
-// 8. Check if one set is a superset of another
-let isSuperset = set.isSuperset(of: anotherSet) // Returns true if all elements of anotherSet are in set
-
-// 9. Find the difference between two sets
-let differenceSet = set.subtracting(anotherSet) // Elements only in the first set
-
-// 10. Update the set to keep only unique elements not in anotherSet
-set.subtract(anotherSet) // Removes common elements directly from set
-
-// 11. Find the intersection of two sets
-let intersectionSet = set.intersection(anotherSet) // Returns set with common elements
-
-// 12. Update the set to keep only the intersection of elements
-set.formIntersection(anotherSet) // Modifies set to keep only common elements
-
-// 13. Find the symmetric difference (non-common elements) between two sets
-let symmetricDifferenceSet = set.symmetricDifference(anotherSet) // Returns non-common elements
-
-// 14. Update the set with the symmetric difference (non-common elements)
-set.formSymmetricDifference(anotherSet) // Keeps only non-common elements in the original set
-
-// 15. Union of two sets (combining without duplicates)
-let unionSet = set.union(anotherSet) // Combines both sets without duplicates
-
-// 16. Update the original set with another set (equivalent to union)
-set.formUnion(anotherSet) // Adds all elements of anotherSet to set without duplicates
-
-
-```
-
-## Tuples
-
-> A [tuple](https://www.scaler.com/topics/python/tuples-in-python/) is a collection which is ordered, unchangeable and can contain duplicate values
-> 
-- *Operations Time Complexities*
-    
-    Similar to list
-    
-
-```swift
-// is hashable
-let tuple = (1, 2, 3, 1)
-```
 
 # Built-in or Library functions
 
