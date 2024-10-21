@@ -589,9 +589,10 @@ let tuple = (1, 2, 3, 1)
 ```swift
 
 import Foundation
+import Collections // Make sure to import the Swift Collections package
 
-// Start with an array
-var queue: [String] = ["name", "age", "DOB"]
+// Start with a deque
+var queue: Deque<String> = Deque(["name", "age", "DOB"])
 
 // Append an element to the right
 queue.append("append_from_right") // O(1)
@@ -600,32 +601,33 @@ queue.append("append_from_right") // O(1)
 let poppedRight = queue.popLast() // O(1)
 
 // Append an element to the left
-queue.insert("fromLeft", at: 0) // O(n)
+queue.prepend("fromLeft") // O(1)
 
 // Pop from the left
-let poppedLeft = queue.removeFirst() // O(n)
+let poppedLeft = queue.popFirst() // O(1)
 
-// Find the index of an element between two indices
+// Find the index of an element (this operation is O(n))
 if let index = queue.firstIndex(of: "age") {
     print("Index of 'age': \(index)")
 }
 
-// Insert an element at a specific index
+// Insert an element at a specific index (O(n))
 queue.insert("insertedElement", at: 1) // O(n)
 
-// Remove the first occurrence of an element
+// Remove the first occurrence of an element (O(n))
 if let indexToRemove = queue.firstIndex(of: "name") {
     queue.remove(at: indexToRemove) // O(n)
 }
 
-// Count of elements
+// Count of elements (O(1))
 let count = queue.count // O(1)
 
-// Reverse the order of elements
+// Reverse the order of elements (O(n))
 queue.reverse() // O(n)
 
 // For debugging
 print("Queue after operations: \(queue)")
+
 
 ```
 
@@ -639,50 +641,56 @@ print("Queue after operations: \(queue)")
     
 
 ```swift
-//Min Heap:
-var nums = [5, 7, 9, 1, 3]
+// MIN Heap
+import Collections
 
-// Convert to a min-heap (just sort for simplicity)
-nums.sort()  // O(n log n) for the initial conversion
+// Initialize the min-heap
+var minHeap = Heap<Int>(.min)
 
-// Push a new element
+// Push elements into the min-heap
 func pushMinHeap(_ value: Int) {
-    nums.append(value)
-    nums.sort()  // O(n log n) for maintaining the min-heap
+    minHeap.insert(value)  // Insert directly into the heap
 }
 
-// Pop the minimum element
+// Pop the minimum element from the min-heap
 func popMinHeap() -> Int? {
-    guard !nums.isEmpty else { return nil }
-    return nums.removeFirst()  // O(n) due to shifting elements
+    return minHeap.popMin() // Pop the minimum element
 }
 
 // Example Usage
+minHeap.insert(5)
+minHeap.insert(7)
+minHeap.insert(9)
+minHeap.insert(1)
+minHeap.insert(3)
+
 pushMinHeap(0)
-print("Min after pushing 0:", popMinHeap() ?? "Heap is empty")
+print("Min after pushing 0:", popMinHeap() ?? "Heap is empty")  // Should print 0
 
+// MAX Heap
+// Initialize the max-heap using inverted values
+var maxHeap = Heap<Int>(.min)
 
-//Max Heap:
-var maxHeapNums = [5, 7, 9, 1, 3]
-
-// Convert to a max-heap (sort in descending order)
-maxHeapNums.sort(by: >)  // O(n log n)
-
-// Push a new element
+// Push elements into the max-heap
 func pushMaxHeap(_ value: Int) {
-    maxHeapNums.append(value)
-    maxHeapNums.sort(by: >)  // O(n log n) to maintain max-heap
+    maxHeap.insert(-value) // Insert the inverted value
 }
 
-// Pop the maximum element
+// Pop the maximum element from the max-heap
 func popMaxHeap() -> Int? {
-    guard !maxHeapNums.isEmpty else { return nil }
-    return maxHeapNums.removeFirst()  // O(n)
+    return maxHeap.popMin().map { -$0 } // Pop and invert back
 }
 
 // Example Usage
+pushMaxHeap(5)
+pushMaxHeap(7)
+pushMaxHeap(9)
+pushMaxHeap(1)
+pushMaxHeap(3)
+
 pushMaxHeap(20)
-print("Max after pushing 20:", popMaxHeap() ?? "Heap is empty")
+print("Max after pushing 20:", popMaxHeap() ?? "Heap is empty")  // Should print 20
+
 
 
 ```
