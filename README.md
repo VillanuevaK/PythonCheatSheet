@@ -586,27 +586,47 @@ let tuple = (1, 2, 3, 1)
     ![Untitled](https://user-images.githubusercontent.com/47276307/172330115-78500420-3276-4e45-8ce3-fd668b7eb14e.jpg)
     
 
-```python
+```swift
 
-#in BFS(Breadth-first search) or other algorithms where we have to pop or add elements to the begining , deque is the best option 
-#we can also use list, but list.pop(0) is O(n) operation where as dequeu.popleft() is O(1)
+import Foundation
 
-from collections import deque
+// Start with an array
+var queue: [String] = ["name", "age", "DOB"]
 
-queue = deque(['name','age','DOB'])
+// Append an element to the right
+queue.append("append_from_right") // O(1)
 
-queue.append("append_from_right") # Append from right
-queue.pop() # Pop from right
+// Pop from the right
+let poppedRight = queue.popLast() // O(1)
 
-queue.appendleft("fromLeft") # Append from left
-queue.popleft() # Pop from left
+// Append an element to the left
+queue.insert("fromLeft", at: 0) // O(n)
 
-queue.index(element,begin_index,end_index) # Returns first index of element b/w the 2 indices.
-queue.insert(index,element)
-queue.remove() # removes first occurrance
-queue.count() # obvious
+// Pop from the left
+let poppedLeft = queue.removeFirst() // O(n)
 
-queue.reverse() # reverses order of queue elements
+// Find the index of an element between two indices
+if let index = queue.firstIndex(of: "age") {
+    print("Index of 'age': \(index)")
+}
+
+// Insert an element at a specific index
+queue.insert("insertedElement", at: 1) // O(n)
+
+// Remove the first occurrence of an element
+if let indexToRemove = queue.firstIndex(of: "name") {
+    queue.remove(at: indexToRemove) // O(n)
+}
+
+// Count of elements
+let count = queue.count // O(1)
+
+// Reverse the order of elements
+queue.reverse() // O(n)
+
+// For debugging
+print("Queue after operations: \(queue)")
+
 ```
 
 ## Heapq
@@ -618,61 +638,53 @@ queue.reverse() # reverses order of queue elements
     ![Untitled](https://user-images.githubusercontent.com/47276307/172330122-29cf0756-89bc-4654-a4e8-4e318156c7d1.jpg)
     
 
-```python
-import heapq # (minHeap by Default)
+```swift
+//Min Heap:
+var nums = [5, 7, 9, 1, 3]
 
-nums = [5, 7, 9, 1, 3]
+// Convert to a min-heap (just sort for simplicity)
+nums.sort()  // O(n log n) for the initial conversion
 
-heapq.heapify(nums) # converts list into heap. Can be converted back to list by list(nums).
-heapq.heappush(nums,element) # Push an element into the heap
-heapq.heappop(nums) # Pop an element from the heap
-# heappush(heap, ele) :- This function is used to insert the element mentioned
-# in its arguments into heap. The order is adjusted, so as heap structure is
-# maintained.
-# heappop(heap) :- This function is used to remove and return the smallest
-# element from heap. The order is adjusted, so as heap structure is maintained.
+// Push a new element
+func pushMinHeap(_ value: Int) {
+    nums.append(value)
+    nums.sort()  // O(n log n) for maintaining the min-heap
+}
 
-# Other Methods Available in the Library
-# Used to return the k largest elements from the iterable specified 
-# The key is a function with that accepts single element from iterable,
-# and the returned value from that function is then used to rank that element in the heap
-heapq.nlargest(k, iterable, key = fun)
-heapq.nsmallest(k, iterable, key = fun)
+// Pop the minimum element
+func popMinHeap() -> Int? {
+    guard !nums.isEmpty else { return nil }
+    return nums.removeFirst()  // O(n) due to shifting elements
+}
+
+// Example Usage
+pushMinHeap(0)
+print("Min after pushing 0:", popMinHeap() ?? "Heap is empty")
 
 
-#Max heap in python 
+//Max Heap:
+var maxHeapNums = [5, 7, 9, 1, 3]
 
-#By default heapq in python is min heap, 
-#if we want to use max heap we can simply invert the value of the keys and use heapq. 
-#For example, turn 1000.0 into -1000.0 and 5.0 into -5.0.
+// Convert to a max-heap (sort in descending order)
+maxHeapNums.sort(by: >)  // O(n log n)
 
-#The easiest and ideal solution
-#Multiply the values by -1
+// Push a new element
+func pushMaxHeap(_ value: Int) {
+    maxHeapNums.append(value)
+    maxHeapNums.sort(by: >)  // O(n log n) to maintain max-heap
+}
 
-#All the highest numbers are now the lowest and vice versa.
+// Pop the maximum element
+func popMaxHeap() -> Int? {
+    guard !maxHeapNums.isEmpty else { return nil }
+    return maxHeapNums.removeFirst()  // O(n)
+}
 
-#Just remember that when you pop an element to multiply it with -1 in order to get the original value again.
+// Example Usage
+pushMaxHeap(20)
+print("Max after pushing 20:", popMaxHeap() ?? "Heap is empty")
 
-#Example: 
 
-import heapq
-heap = []
-heapq.heappush(heap, 1*(-1))
-heapq.heappush(heap, 10*(-1))
-heapq.heappush(heap, 20*(-1))
-print(heap)
-
-The output will look like:
-
-[-20, -1, -10]
-
-#when popping element multiply it with -1
-
-max_element = -heapq.heappop(heap)
-print(max_element)
-
-Output will be:
-20
 ```
 
 
