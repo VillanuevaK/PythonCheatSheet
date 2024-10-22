@@ -1,3 +1,7 @@
+# Swift Syntax Quick Look Up
+# This does not contain answers to coding questions!
+
+
 # Data Structures
 
 *Important data structures for LeetCode*
