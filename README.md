@@ -141,9 +141,12 @@ for (c1,c2) in zip(s, t) {
 ```Swift
 // ** split Function **
 let text = "Python is a fun programming language"
-let words = text.split(separator: " ")
+let words = text.split(separator: " ") //This is a list of substrings! I want a list of strings
 print(words)
 // Output: ["Python", "is", "a", "fun", "programming", "language"]
+
+let words = text.split(separator: " ").map { String($0) } // a list of strings
+
 
 // convert string to list
 let s = "abcd"
