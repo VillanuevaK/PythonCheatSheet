@@ -582,6 +582,14 @@ set.formUnion(anotherSet) // Adds all elements of anotherSet to set without dupl
 ```swift
 // is hashable
 let tuple = (1, 2, 3, 1)
+
+// tuple with named parameters:
+let person: (name: String, age: Int) = (name: "kev", age: 28)
+
+// sorting based on multiple parameters
+let sortedPeople = people.sorted {
+    ($0.age, $0.name) > ($1.age, $1.name)
+}
 ```
 
 ## Deque
