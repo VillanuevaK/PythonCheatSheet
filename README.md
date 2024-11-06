@@ -140,10 +140,10 @@ for (c1,c2) in zip(s, t) {
 
 ```Swift
 // ** split Function **
-let text = "Python is a fun programming language"
+let text = "Swift is a fun programming language"
 let words = text.split(separator: " ") //This is a list of substrings! I want a list of strings
 print(words)
-// Output: ["Python", "is", "a", "fun", "programming", "language"]
+// Output: ["Swift", "is", "a", "fun", "programming", "language"]
 
 let words = text.split(separator: " ").map { String($0) } // a list of strings
 
@@ -266,6 +266,11 @@ print(everythingExceptLastTwo) // Output: "Hello, Swift Programm"
 let originalString = "Hello, Swift!"
 let reversedString = String(originalString.reversed())
 print(reversedString)  // Output: "!tfiwS ,olleH"
+
+// Substring vs string
+A Substring is a lightweight view into a String and avoids extra memory allocation
+- Use Substring when you need to read the string and no modify it
+- Use String when you need to change the the data or make a copy to store it
 ```
 
 ## Lists
