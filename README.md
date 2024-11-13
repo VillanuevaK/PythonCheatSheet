@@ -5,7 +5,7 @@
 # Data Structures
 
 *Important data structures for LeetCode*
-- how to deal with strings
+TODO: Make a section on functional programming
 - what are closures
 - what are functinoal programming paradigms (mapping, filtering, reducing)
 - Higher-Order Functions
