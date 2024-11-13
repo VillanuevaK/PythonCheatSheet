@@ -5,10 +5,6 @@
 # Data Structures
 
 *Important data structures for LeetCode*
-TODO: Make a section on functional programming
-- what are closures
-- what are functinoal programming paradigms (mapping, filtering, reducing)
-- Higher-Order Functions
 
 ## Flow of control
 ```Swift
@@ -134,6 +130,17 @@ for (c1,c2) in zip(s, t) {
 }
 
 // Reference Check Equality Identity Operators (=== and !==)
+```
+
+## Higher order functions
+TODO: Make a section on functional programming
+- go through the last couple chat gpts
+- what are closures
+- what are functinoal programming paradigms (mapping, filtering, reducing)
+- Higher-Order Functions
+- Then continue working scanning and updating everything here, then see what i have update in swift collections
+```Swift
+
 ```
 
 ## Strings
