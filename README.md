@@ -524,17 +524,13 @@ for (key, value) in dict {
 }
 
 // 16. Default dict kind of
-var dict: [String: Int] = [:]
-let key = "key1"
-let value = dict[key] ?? 0 // Use 0 as the default if the key doesn't exist
-dict[key] = value + 1 // Increment the value
-
-or even better:
 counts[element, default: 0] += 1
 
 //16.2 keys
 // A. Define a dictionary with a tuple as the key
 var dict: [ (String, Int) : String ] = [:]
+// or if this makes it easier if you want to access by dict[].name instead of dict[].0
+var dict: [ (name: String, score: Int) : String ] = [:]
 
 // B. Add entries to the dictionary
 dict[("Apple", 1)] = "First entry"
@@ -740,58 +736,39 @@ print("Queue after operations: \(queue)")
     
 
 ```swift
-// MIN Heap
-import Collections
+// Create an empty heap
+var heap = Heap<Int>()
 
-// Initialize the min-heap
-var minHeap = Heap<Int>(.min)
+// Initialize with elements
+var heapFromSequence = Heap([5, 3, 8, 1, 2])
 
-// Push elements into the min-heap
-func pushMinHeap(_ value: Int) {
-    minHeap.insert(value)  // Insert directly into the heap
+print(heap.isEmpty) // true for an empty heap
+print(heapFromSequence.count) // Output: 5
+
+print(heapFromSequence.min) // Output: 1
+print(heapFromSequence.max) // Output: 8
+
+heapFromSequence.insert(6)
+heapFromSequence.insert(contentsOf: [9, 0])
+// Now heapFromSequence contains [5, 3, 8, 1, 2, 6, 9, 0]
+
+if let smallest = heapFromSequence.popMin() {
+    print(smallest) // Output: 0 (smallest element)
+}
+if let largest = heapFromSequence.popMax() {
+    print(largest) // Output: 9 (largest element)
 }
 
-// Pop the minimum element from the min-heap
-func popMinHeap() -> Int? {
-    return minHeap.popMin() // Pop the minimum element
+heapFromSequence.replaceMin(with: 4) // Replaces current min with 4
+heapFromSequence.replaceMax(with: 10) // Replaces current max with 10
+
+// Reserve space to improve efficiency if you know how many elements you’ll add:
+heapFromSequence.reserveCapacity(20)
+
+// to itterate through a heap
+for item in heapFromSequence.unordered {
+    print(item)
 }
-
-// Example Usage
-minHeap.insert(5)
-minHeap.insert(7)
-minHeap.insert(9)
-minHeap.insert(1)
-minHeap.insert(3)
-
-pushMinHeap(0)
-print("Min after pushing 0:", popMinHeap() ?? "Heap is empty")  // Should print 0
-
-// MAX Heap
-// Initialize the max-heap using inverted values
-var maxHeap = Heap<Int>(.min)
-
-// Push elements into the max-heap
-func pushMaxHeap(_ value: Int) {
-    maxHeap.insert(-value) // Insert the inverted value
-}
-
-// Pop the maximum element from the max-heap
-func popMaxHeap() -> Int? {
-    return maxHeap.popMin().map { -$0 } // Pop and invert back
-}
-
-// Example Usage
-pushMaxHeap(5)
-pushMaxHeap(7)
-pushMaxHeap(9)
-pushMaxHeap(1)
-pushMaxHeap(3)
-
-pushMaxHeap(20)
-print("Max after pushing 20:", popMaxHeap() ?? "Heap is empty")  // Should print 20
-
-
-
 ```
 
 
@@ -799,218 +776,92 @@ print("Max after pushing 20:", popMaxHeap() ?? "Heap is empty")  // Should print
 
 - Functions to iterate over list / other iterable (tuple, dictionaries)
     
-    ```python
-    
-    ** map(fun, iter) **
-    # fun : It is a function to which map passes each element of given iterable.
-    # iter : It is a iterable which is to be mapped.
+    ```Swift
+    // is at least one or all true?
+    let arr = [1, 2, 3, 4]
+    let result = arr.contains { $0 > 2 }  // Checks if any element is greater than 2
+    print(result)  // Output: true
 
-    #itterating 2 lists or more in for loop
-    ** zip(list,list) **
-    for elem1,elem2 in zip(firstList,secondList):
-    	# will merge both lists and produce tuples with both elements
-    	# Tuples will stop at shortest list (in case of both lists having different len)
-    # Example
-    '''
-    a = ("John", "Charles", "Mike")
-    b = ("Jenny", "Christy", "Monica")
-    
-    x = zip(a, b)
-    
-    # use the tuple() function to display a readable version of the result:
-    
-    print(tuple(x))
-    o/p: (('John', 'Jenny'), ('Charles', 'Christy'), ('Mike', 'Monica'))
-    '''
-    
-    ** any(list) ** [ OPPOSITE IS => ** all() ** ]
-    any(someList) # returns true if ANY element in list is true [any string, all numbers except 0 also count as true]
-    
-    ** enumerate(list|tuple) ** 
-    # [when you need to attach indexes to lists or tuples ]
-    enumerate(anyList) # ['a','b','c'] => [(0, 'a'), (1, 'b'), (2, 'c')]
-    #in a forloop:
-    fruits = ['apple', 'banana', 'cherry']
-    for index, fruit in enumerate(fruits, start=3): #start is optional
-        print(index, fruit)
-    #3 apple
-    #4 banana
-    #5 cherry
-    
-    ** filter(function|list) **
-    filter(myFunction,list) # returns list with elements that returned true when passed in function
+    //we can also do
+    arr.allSatisfy { } //if we want to check if all true
+
     
     ***************** import bisect ***********************
     
-    ** bisect.bisect(list,number,begin,end) ** O(log(n))
+    ** O(log(n))
     # [ returns the index where the element should be inserted 
     #		such that sorting order is maintained ]
-    a = [1,2,4]
-    bisect.bisect(a,3,0,4) # [1,2,4] => 3 coz '3' should be inserted in 3rd index to maintain sorting order
-    
-    # Other variants of this functions are => bisect.bisect_left() | bisect.bisect_right()
-    # they have same arguments. Suppose the element we want to insert is already present
-    # in the sorting list, the bisect_left() will return index left of the existing number
-    # and the bisect_right() or bisect() will return index right to the existing number
-    
-    # ** bisect.insort(list,number,begin,end)       ** O(n) to insert
-    # ** bisect.insort_right(list,number,begin,end) ** 
-    # ** bisect.insort_left(list,number,begin,end)  ** 
-    
-    The above 3 functions are exact same of bisect.bisect(), the only difference
-    is that they return the sorted list after inserting and not the index. The
-    left() right() logic is also same as above.
+    var sortedArray = [1, 2, 4]
+    let insertIndex = binarySearch(sortedArray, for: 3)
+    sortedArray.insert(3, at: insertIndex)
+    print(sortedArray)  // Output: [1, 2, 3, 4]
+
     ```
     
 - Getting ASCII value of a character
     
-    ```python
-    ** ord(str) **
-    # returns ascii value of the character , Example ord("a") = 97
-    ** chr(int) ** 
-    # return character of given ascii value , Example chr(97) = "a"
+    ```Swift
+    let character: Character = "A"
+    print(character.asciiValue ?? "No ASCII value")  // Output: 65
+
+    let asciiValue: UInt8 = 65
+    print(Character(UnicodeScalar(asciiValue)))  // Output: A
+
     ```
     
 
 # Clean Code Tips
 
-- **Doc Strings -**  Documentation for your functions in the interview to look slick 😎
-    
-    A docstring is short for documentation string.
-    
-    Python docstrings (documentation strings) are the [string](https://www.programiz.com/python-programming/string) literals that appear right after the definition of a function, method, class, or module.
-    
-    Triple quotes are used while writing docstrings. For example:
-    
-    ```
-    def double(num):
-        """Function to double the value"""
-        return 2*num
-    ```
-    
-    Docstrings appear right after the definition of a function, class, or a module. This separates docstrings from multiline comments using triple quotes.
-    
-    The docstrings are associated with the object as their `__doc__` attribute.
-    
-    So, we can access the docstrings of the above function with the following lines of code:
-    
-    ```
-    def double(num):
-        """Function to double the value"""
-        return 2*num
-    print(double.__doc__)
-    ```
-    
-    **Output**
-    
-    ```
-    Function to double the value
-    ```
-    
-- Use **Assert keyword** in python for testing edge cases. Looks more professional.
-    
-    ### Definition and Usage
-    
-    The `assert` keyword is used when debugging code.
-    
-    The `assert` keyword lets you test if a condition in your code returns True, if not, the program will raise an AssertionError.
-    
-    You can write a message to be written if the code returns False, check the example below.
-    
-    ```python
-    x = "hello"
-    
-    #if condition returns False, AssertionError is raised:
-    assert x == "goodbye", "x should be 'hello'"
-    ```
-    
-- **ALWAYS** be aware of any code snippet that is being **REPEATED** in your solution. **MODULARITY** #1 Priority. Refactoring is also an important part of  interview.
-    - This is usually asked as a follow up after coding the solution. *Are there any changes you want to make to this solution?*
 
 # Miscellaneous
 
-- How to take multiple line input in python?
-    
-    [Taking multiple inputs from user in Python - GeeksforGeeks](https://www.geeksforgeeks.org/taking-multiple-inputs-from-user-in-python/)
-    
-    - Using split() method
-    - Using List comprehension
+- How to take multiple line input?
     
     **Syntax :**
     
-    ```
-    input().split(separator, maxsplit)
+    ```swift
+    let input = readLine()!
+    let values = input.split(separator: " ")
     ```
     
     ## Example
     
-    ```python
-    # Python program showing how to
-    # multiple input using split
-     
-    # taking two inputs at a time
-    x, y = input("Enter a two value: ").split()
-    print("Number of boys: ", x)
-    print("Number of girls: ", y)
-    print()
-     
-    # taking three inputs at a time
-    x, y, z = input("Enter a three value: ").split()
-    print("Total number of students: ", x)
-    print("Number of boys is : ", y)
-    print("Number of girls is : ", z)
-    print()
-     
-    # taking two inputs at a time
-    a, b = input("Enter a two value: ").split()
-    print("First number is {} and second number is {}".format(a, b))
-    print()
-     
-    # taking multiple inputs at a time
-    # and type casting using list() function
-    x = list(map(int, input("Enter a multiple value: ").split()))
-    print("List of students: ", x)
+    ```swift
+    // Read a line of input and split it into components
+    let input = readLine()!
+
+    // Split the input into parts using space as the separator
+    let values = input.split(separator: " ")
+
+    // Assign values to variables
+    let x = values[0]
+    let y = values[1]
+
+    print("First value: \(x)")
+    print("Second value: \(y)")
+
+    // Read the line of input, split by space, and convert to integers. For Multiple Integer Inputs:
+    let input = readLine()!
+    let values = input.split(separator: " ").map { Int($0)! }
+
+    print("Entered values: \(values)")
+
+    // Read multiple lines of input
+    var lines = [String]()
+    while let line = readLine(), !line.isEmpty {
+        lines.append(line)
+    }
+    
+    // Example: process the lines
+    for line in lines {
+        print("You entered: \(line)")
+    }
     ```
     
-    ```python
-    # Python program showing
-    # how to take multiple input
-    # using List comprehension
-     
-    # taking two input at a time
-    x, y = [int(x) for x in input("Enter two value: ").split()]
-    print("First Number is: ", x)
-    print("Second Number is: ", y)
-    print()
-     
-    # taking three input at a time
-    x, y, z = [int(x) for x in input("Enter three value: ").split()]
-    print("First Number is: ", x)
-    print("Second Number is: ", y)
-    print("Third Number is: ", z)
-    print()
-     
-    # taking two inputs at a time
-    x, y = [int(x) for x in input("Enter two value: ").split()]
-    print("First number is {} and second number is {}".format(x, y))
-    print()
-     
-    # taking multiple inputs at a time
-    x = [int(x) for x in input("Enter multiple value: ").split()]
-    print("Number of list is: ", x)
-    
-    # taking multiple inputs at a time separated by comma
-    x = [int(x) for x in input("Enter multiple value: ").split(",")]
-    print("Number of list is: ", x)
-    ```
     
 - Important Python Math Functions
     
-    [Python Math Module - GeeksforGeeks](https://www.geeksforgeeks.org/python-math-module/)
-    
     - Log Function
-    
-    [Log functions in Python - GeeksforGeeks](https://www.geeksforgeeks.org/log-functions-python/)
     
     ```
     Syntax :
@@ -1142,53 +993,55 @@ print("Max after pushing 20:", popMaxHeap() ?? "Heap is empty")  // Should print
     
 ## Class Variable and Instance Variable
 ```
-class Example:
-    # Class variable
-    class_var = "I am a class variable"
-
-    def __init__(self, instance_var):
-        # Instance variable
-        self.instance_var = instance_var
-
-    def show_variables(self):
-        # Accessing class variable
-        print("Class variable:", Example.class_var)
-        print("Class variable using self:", self.class_var)
+class Example {
+    // Class variable (static property)
+    static var classVar = "I am a class variable"
+    
+    // Instance variable (stored property)
+    var instanceVar: String
+    
+    // Initializer to set instance variable
+    init(instanceVar: String) {
+        self.instanceVar = instanceVar
+    }
+    
+    // Method to show both class and instance variables
+    func showVariables() {
+        // Accessing class variable
+        print("Class variable:", Example.classVar)
+        print("Class variable using self:", Example.classVar)
         
-        # Accessing instance variable
-        print("Instance variable:", self.instance_var)
+        // Accessing instance variable
+        print("Instance variable:", self.instanceVar)
+    }
+}
 
-# Creating an instance of Example
-obj = Example("I am an instance variable")
+// Creating an instance of Example
+let obj = Example(instanceVar: "I am an instance variable")
 
-# Calling the method to show variables
-obj.show_variables()
+// Calling the method to show variables
+obj.showVariables()
+
 ```
 ## Max Int, Min Int 
 ```
-float('inf')
-float('-inf')
+Int.max and Int.min are used to represent the maximum and minimum values that an integer can hold.
+Float.max and Float.min are for Float (32-bit), while Double.max and Double.min are for Double (64-bit).
 ```
 
 ## Integer Division
 ```
 REMEMBER: When dividing, make int into float
 
-> Python integer division acts a bit weird with -ve numbers ex: -3//2 will give -2 answer instead of -1 so always use int(-3/2) for integer division in problems
->
-#to always truncate two integers toward zero (including negatives):
-int(float(num2) / num1)
-#float(num2) / num1 converts num2 to a float first and then performs true division, resulting in a float.
+let num1 = -3
+let num2 = 2
+
+let result = Int(Float(num1) / Float(num2)) // Ensures truncation toward zero
+print(result)  // Output: -1
 ```
 
 # Resources
-
-- PDF with all Python Data Structures in-depth
-    
-    [Python Data Structure.pdf](https://github.com/AbdulMalikDev/PythonCheatSheet/files/9033162/Python_Cheat_Sheet_Made_by_Abdul_Malik.pdf)
-    
-
-[The Modulo Operation (%) With Negative Numbers in Python](https://betterprogramming.pub/modulo-operation-with-negative-numbers-in-python-38cb7256bb32)
+https://swiftpackageindex.com/apple/swift-collections/
 --
 
 
