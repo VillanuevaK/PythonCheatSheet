@@ -133,14 +133,6 @@ for (c1,c2) in zip(s, t) {
 ```
 
 ## Higher order functions
-TODO: Make a section on functional programming
-- go through the last couple chat gpts
-- what are closures
-- what are functinoal programming paradigms (mapping, filtering, reducing)
-- Higher-Order Functions
-- What are leetcode problems using forEach higher-order or compactMap that are better compared to most common methods of solving some of these problems
-- Then continue working scanning and updating everything here, then see what i have update in swift collections
-- 
 ```Swift
 Higher-order functions are functions that either take other functions as parameters or return functions as resutls. They allow for a functional programming approach, making code more concise and expressive, especially when working with collections.
 
@@ -149,7 +141,7 @@ Swift provides several built-in higher order functions for collections:
 let number = [1,2,3,4]
 let doubled = numbers.map { $0 * 2 } // 2,4,6,8
 
-2. filter: Filters elements of a collection based on a condition provided in a closure
+2. filter: Filters elements of a collection based on a condition provided in a closure (white list)
 let numbers = [1, 2, 3, 4]
 let evenNumbers = numbers.filter { $0 % 2 == 0 }  // [2, 4]
 
@@ -158,8 +150,8 @@ let numbers = [1, 2, 3, 4]
 let sum = numbers.reduce(0) { $0 + $1 }  // 10
 
 4. flatMap: Transforms each element into a new collection and flatterns the result into a single level collection
-let numbers = [1, 2, 3, 4]
-let sum = numbers.reduce(0) { $0 + $1 }  // 10
+let nestedArray = [[1, 2], [3, 4]]
+let flatArray = nestedArray.flatMap { $0 }  // [1, 2, 3, 4]
 
 5. compactMap: Similar to map, but removes any nil values from the result
 let numbers = ["1", "2", "three"]
@@ -197,6 +189,10 @@ someObject.someMethod { [weak self] result in
 ```
 
 ## Strings
+// Substring vs string
+A Substring is a lightweight view into a String and avoids extra memory allocation
+- Use Substring when you need to read the string and no modify it
+- Use String when you need to change the the data or make a copy to store it
 
 ```Swift
 // ** split Function **
@@ -232,8 +228,8 @@ let s = "1242323"
 let isNumeric = s.allSatisfy { $0.isNumber }
 print(isNumeric) // Output: true
 
-# The find() method returns the index of first occurrence of the substring (if found). If not found, it returns -1.
-# check the index of 'fun'
+// The returns the index of first occurrence of the substring (if found). If not found, it returns -1.
+// check the index of 'fun'
 let message = "python is a fun programming language"
 if let index = message.range(of: "fun")?.lowerBound {
     print(message.distance(from: message.startIndex, to: index))
@@ -241,14 +237,25 @@ if let index = message.range(of: "fun")?.lowerBound {
     print(-1)
 }
 // Output: 12
+// More info on range and lowerBound for finding the 'index':
+/*
+In Swift, the line if let index = message.range(of: "fun")?.lowerBound { ... } works by using the range(of:) method to search for a substring within a string. Here’s how each part works:
 
-# The isalnum() method returns True if all characters in the string are alphanumeric (either alphabets or numbers). If not, it returns False.
+message.range(of: "fun"): The range(of:) method on a string searches for the first occurrence of the specified substring (in this case, "fun") within message. If the substring is found, range(of:) returns an Optional Range<String.Index> that represents the range of the substring within message. If the substring is not found, range(of:) returns nil.
+
+?.lowerBound: This part is using optional chaining (?) on the range returned by range(of:). If range(of:) finds a match, then .lowerBound accesses the starting index of that range. lowerBound represents the starting point (or first character) of the range where "fun" is found. If range(of:) returns nil, this whole expression evaluates to nil, and the if let statement will not execute.
+
+Example: If message is "Have fun learning Swift!", then message.range(of: "fun") finds "fun" at index 5 in the string. The range for "fun" is from index 5 to index 8, so .lowerBound gives the starting index, which is 5.
+*/
+
+
+# returns True if all characters in the string are alphanumeric (either alphabets or numbers). If not, it returns False.
 let name = "M3onicaGell22er"
 let isAlphanumeric = name.allSatisfy { $0.isLetter || $0.isNumber }
 print(isAlphanumeric)
 // Output: true
 
-# The isalpha() method returns True if all characters in the string are alphabets. If not, it returns False
+# returns True if all characters in the string are alphabets. If not, it returns False
 let name = "Monica"
 let isAlpha = name.allSatisfy { $0.isLetter }
 print(isAlpha)
@@ -256,14 +263,14 @@ print(isAlpha)
 
 # other important functions
 let string = "  Hello, World!  "
-let strippedString = string.trimmingCharacters(in: .whitespaces) #The strip() method returns a copy of the string by removing both the leading and the trailing characters (based on the string argument passed).
+let strippedString = string.trimmingCharacters(in: .whitespaces) #returns a copy of the string by removing both the leading and the trailing characters (based on the string argument passed).
 
-let uppercasedString = string.uppercased() # The upper() method converts all lowercase characters in a string into uppercase characters and returns it.
+let uppercasedString = string.uppercased()
 
-let lowercasedString = string.lowercased() # The lower() method converts all uppercase characters in a string into lowercase characters and returns it.
-let isLower = string.allSatisfy { $0.isLowercase } # The islower() method returns True if all cased characters in the string are lowercase and there is at least one cased character, False otherwise.
+let lowercasedString = string.lowercased() 
+let isLower = string.allSatisfy { $0.isLowercase } 
 let isDigit = string.allSatisfy { $0.isNumber }
-let isUpper = string.allSatisfy { $0.isUppercase } # The isupper() method returns True if all cased characters in the string are uppercase and there is at least one cased character, False otherwise.
+let isUpper = string.allSatisfy { $0.isUppercase }
 
 //Sorting a string:
 let originalString = "swift programming"
@@ -310,7 +317,7 @@ let stepSlice = String(str.enumerated().compactMap { index, character in
 print(stepSlice)  // Output "Hlo wf rgamn"
 
 // 5. Getting the Last Item
-let lastTwoChars = String(str.suffix(1))
+let lastTwoChars = String(str.suffix(1)) //.suffix(Int) by itself is a substring
 //if u want a char...
 let lastChar = str.last // Optional("g")
 
@@ -327,10 +334,6 @@ let originalString = "Hello, Swift!"
 let reversedString = String(originalString.reversed())
 print(reversedString)  // Output: "!tfiwS ,olleH"
 
-// Substring vs string
-A Substring is a lightweight view into a String and avoids extra memory allocation
-- Use Substring when you need to read the string and no modify it
-- Use String when you need to change the the data or make a copy to store it
 ```
 
 ## Lists
@@ -371,6 +374,8 @@ let countOfOnes = nums.filter { $0 == 1 }.count // returns 2
 // Extend the array with another array (concatenate two arrays)
 let someOtherList = [4, 5, 6]
 nums.append(contentsOf: someOtherList) // [10, 1, 2, 1, 4, 5, 6]
+// if you just want to make a new copy:
+let combinedArray = array1 + array2
 
 // Pop the last element from the array
 let lastElement = nums.popLast() // Removes and returns 6
@@ -384,8 +389,10 @@ nums.sort() // [1, 1, 2, 4, 5, 10]
 // Creating an array with repeated elements (similar to list multiplication in Python)
 let list1 = Array(repeating: 1, count: 5) // [1, 1, 1, 1, 1]
 
-
+// swap:
+nums.swapAt(0, 1) //swaps stuff in these indices
 ```
+
 ## Matrices
 ```Swift
 let matrix = [
@@ -443,6 +450,18 @@ print(lastTwoItems)  // Output: [4, 5]
 let everythingExceptLastTwo = Array(a.dropLast(2))
 print(everythingExceptLastTwo)  // Output: [1, 2, 3]
 
+```
+
+## Linked Lists
+```Swift
+//TODO fill this section with useful tips and swift syntax
+
+//This may be useful for swapping without needing to make temporary values:
+var a = 5
+var b = 10
+swap(&a, &b)
+print(a) // 10
+print(b) // 5
 ```
 
 ## Dictionary
