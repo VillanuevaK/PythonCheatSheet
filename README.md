@@ -859,136 +859,165 @@ for item in heapFromSequence.unordered {
     ```
     
     
-- Important Python Math Functions
+- Math Functions
     
-    - Log Function
+    - Log Function - Example 1: Natural Logarithm (log base e)
     
-    ```
-    Syntax :
-    math.log(a,Base)
-    Parameters :a : The numeric value
-    Base :  Base to which the logarithm has to be computed.
-    Return Value :
-    Returns natural log if 1 argument is passed and log with
-    specified base if 2 arguments are passed.
-    Exceptions :
-    Raises ValueError is a negative no. is passed as argument.
-    ```
-    
-    ```python
-    import math
-      
-    # Printing the log base e of 14
-    print ("Natural logarithm of 14 is : ", end="")
-    print (math.log(14))
-      
-    # Printing the log base 5 of 14
-    print ("Logarithm base 5 of 14 is : ", end="")
-    print (math.log(14,5))
-    ```
-    
-    - Finding the ceiling and the floor value
-        - Ceil value means the smallest integral value greater than the number and the floor value means the greatest integral value smaller than the number. This can be easily calculated using the ceil() and floor() method respectively.
-    
-    ```python
-    # Python code to demonstrate the working of
-    # ceil() and floor()
-     
-    # importing "math" for mathematical operations
-    import math
-     
-    a = 2.3
-     
-    # returning the ceil of 2.3 (i.e 3)
-    print ("The ceil of 2.3 is : ", end="")
-    print (math.ceil(a))
-     
-    # returning the floor of 2.3 (i.e 2)
-    print ("The floor of 2.3 is : ", end="")
-    print (math.floor(a))
-    
-    ```
-    
-    - Other Important functions
-    
-    ```python
-    # Constants
-    # Print the value of Euler e (2.718281828459045)
-    print (math.e)
-    # Print the value of pi (3.141592653589793)
-    print (math.pi)
-    print (math.gcd(b, a))
-    print (pow(3,4))
-    # print the square root of 4
-    print(math.sqrt(4))
-    a = math.pi/6
-    b = 30
-     
-    # returning the converted value from radians to degrees
-    print ("The converted value from radians to degrees is : ", end="")
-    print (math.degrees(a))
-     
-    # returning the converted value from degrees to radians
-    print ("The converted value from degrees to radians is : ", end="")
-    print (math.radians(b))
-    ```
-    
-    ```python
-    
-    ** bin(int) **
-    bin(anyNumber) # Returns binary version of number
-    
-    ** divmod(int,int) **
-    divmod(dividend,divisor) # returns tuple like (quotient, remainder)
-    
-    ```
-    
-- Python cmp_to_key function to sort list with custom compare function
-    
-    [Sort a list of lists with a custom compare function](https://stackoverflow.com/questions/5213033/sort-a-list-of-lists-with-a-custom-compare-function)
-    
-    ## How the custom comparator works
-    
-    When providing a custom comparator, it should generally return an integer/float value that follows the following pattern (as with most other programming languages and frameworks):
-    
-    - return a negative value (`< 0`) when the left item should be sorted *before* the right item
-    - return a positive value (`> 0`) when the left item should be sorted *after* the right item
-    - return `0` when both the left and the right item have the same weight and should be ordered "equally" without precedence
-    
-    ```python
-    from functools import cmp_to_key
-    sorted(mylist, key=cmp_to_key(compare))
-    
-    # Example
-    def compare(item1, item2):
-        if fitness(item1) < fitness(item2):
-            return -1
-        elif fitness(item1) > fitness(item2):
-            return 1
-        else:
-            return 0
+    ```swift
+    import Foundation
+
+    let value: Double = 14.0
+    let naturalLog = log(value) // log base e
+    print("Natural logarithm of 14 is: \(naturalLog)")
+
     ```
 
-    Sorting with a tie breaker/Sorting based on two things
-    ```python
-    tuples.sort(key=lambda x: (x[0], x[1]))
+  - Log Function - Example 2: Logarithm with a Specific Base
+    
+    ```swift
+    import Foundation
+
+    let value: Double = 14.0
+    let base: Double = 5.0
+    let logBase5 = log(value) / log(base) // log base 5
+    print("Logarithm base 5 of 14 is: \(logBase5)")
     ```
+    
+    - Example of Using ceil() and floor() in Swift:
+    
+    ```swift
+    import Foundation
 
-    Sort list on multiple objects but only one in reversed order
-    ```python
-    a = [str(i) for i in range(10,29)]
-    a.sort(key = lambda x: x[1], reverse=True)
-    a.sort(key = lambda x: x[0])
+    let a: Double = 2.3
+    
+    // Returning the ceil of 2.3 (i.e 3)
+    let ceilValue = ceil(a)
+    print("The ceil of 2.3 is: \(ceilValue)")
+    
+    // Returning the floor of 2.3 (i.e 2)
+    let floorValue = floor(a)
+    print("The floor of 2.3 is: \(floorValue)")
     ```
+    
+    - Other Math
+    
+    ```swift
+    import Foundation
 
-    Sort string in lexicographic order
-    ```python
-    sorted(s, key=str.lower) or sorted(s, key=str.upper)
+    // Constants
+    
+    // Euler's number (e)
+    print("Euler's number (e): \(M_E)")  // M_E is a constant for e
+    
+    // Pi (π)
+    print("Pi (π): \(M_PI)")  // M_PI is a constant for pi
+    
+    // GCD of two numbers
+    let a = 30
+    let b = 12
+    let gcdValue = gcd(a, b)
+    print("GCD of \(b) and \(a): \(gcdValue)")
+    
+    // Power of a number (3^4)
+    let powerValue = pow(3.0, 4.0)
+    print("3^4: \(powerValue)")
+    
+    // Square root of 4
+    let sqrtValue = sqrt(4.0)
+    print("Square root of 4: \(sqrtValue)")
+    
+    // Convert radians to degrees
+    let radians = M_PI / 6
+    let degrees = radians * 180 / M_PI
+    print("The converted value from radians to degrees: \(degrees)")
+    
+    // Convert degrees to radians
+    let degreesValue = 30.0
+    let radiansConverted = degreesValue * M_PI / 180
+    print("The converted value from degrees to radians: \(radiansConverted)")
 
-    #for a specific order of uppers and lowers
-    text='aAaBbcCdE'
-    sorted(text, key=lambda x: (str.lower(x), x))
-    # ['A', 'a', 'a', 'B', 'b', 'C', 'c', 'd', 'E']
+    // Todo: find the swift library that handles this
+    // Swift does not provide a built-in function for GCD directly. However, you can define it yourself. Here is an implementation of the GCD function:
+    func gcd(_ a: Int, _ b: Int) -> Int {
+        var a = a
+        var b = b
+        while b != 0 {
+            let temp = b
+            b = a % b
+            a = temp
+        }
+        return a
+    }
+
+
+    ```
+    
+    ```swift
+    
+    let number = 10
+    let binaryString = String(number, radix: 2)
+    print(binaryString)  // Output: "1010"
+
+    
+    // todo: maybe there is divmod in a swift library somewhere
+    let dividend = 10
+    let divisor = 3
+    let quotient = dividend / divisor
+    let remainder = dividend % divisor
+    print("Quotient: \(quotient), Remainder: \(remainder)")  // Output: "Quotient: 3, Remainder: 1"
+
+    
+    ```
+    
+- Compare
+    
+    
+    ```swift
+    // Define a struct that you want to sort
+    struct Item {
+        var value: Int
+        var name: String
+    }
+    
+    // Example list of items
+    var items = [
+        Item(value: 10, name: "Apple"),
+        Item(value: 5, name: "Banana"),
+        Item(value: 15, name: "Cherry")
+    ]
+    
+    // Custom comparator function
+    func compareItems(item1: Item, item2: Item) -> Bool {
+        // Sort by 'value' first, then by 'name' in case of ties
+        if item1.value != item2.value {
+            return item1.value < item2.value // Ascending order
+        } else {
+            return item1.name < item2.name // Lexicographic order if 'value' is the same
+        }
+    }
+    
+    // Sorting using the custom comparator
+    let sortedItems = items.sorted(by: compareItems)
+    
+    // Print the sorted items
+    for item in sortedItems {
+        print("\(item.name): \(item.value)")
+    }
+
+    // Sorting using a tuple (first by value, then by name)
+    let sortedItemsMultiCriteria = items.sorted {
+        ($0.value, $0.name) < ($1.value, $1.name)
+    }
+    
+    // Print the result
+    for item in sortedItemsMultiCriteria {
+        print("\(item.name): \(item.value)")
+    }
+
+    let text = "aAaBbcCdE"
+    let sortedText = text.sorted { $0.lowercased() < $1.lowercased() }
+    print(sortedText) // Output: ['A', 'a', 'a', 'B', 'b', 'C', 'c', 'd', 'E']
+
     ```
     
 ## Class Variable and Instance Variable
