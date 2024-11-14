@@ -9,6 +9,7 @@
 //TODO:
 - Replace the images with accurate representations of time complexities and stuff for swift foos
 - Compare to libraries as im sure some of this can be further simplified through certain libraries
+-     - Look into Swift Collections if there a need for BitSet, BitArray, OrderedSet, OrderedDictionary, TreeSet, or TreeDictionary comes up
 
 ## Flow of control
 ```Swift
