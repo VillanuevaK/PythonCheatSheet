@@ -924,7 +924,7 @@ for item in heapFromSequence.unordered {
         }
     }
 
-#Chunked
+    #Chunked
     Break a collection into nonoverlapping subsequences:
     
     chunked(by:) forms chunks of consecutive elements that pass a binary predicate,
@@ -962,7 +962,109 @@ for item in heapFromSequence.unordered {
     c.elementsEqual(c.chunked(...).joined())
     // true
 
+# Chain
+    Unlike placing two collections in an array and calling joined(), chaining permits different collection types, performs no allocations, and can preserve the shared conformances of the two underlying types.
+
+    Concatenates two collections with the same element type, one after another.
+    This operation is available for any two sequences by calling the chain(_:_:) function.
     
+    let numbers = chain([10, 20, 30], 1...5)
+    // Array(numbers) == [10, 20, 30, 1, 2, 3, 4, 5]
+    
+    let letters = chain("abcde", "FGHIJ")
+    // String(letters) == "abcdeFGHIJ"
+
+# Cycle
+    In summary, cycle is a powerful utility for scenarios requiring repeated or infinite sequences. It simplifies handling cyclic behavior and allows you to focus on the logic rather than manually managing sequence boundaries.
+    let colors = ["red", "green", "blue"]
+    let repeatingColors = colors.cycled().prefix(10)
+    
+    for color in repeatingColors {
+        print(color) // Output will be: red, green, blue, red, green, blue, red, green, blue, red
+    }
+
+# Unique
+    Removing duplicates while maintaining order, especially in sequences where order matters (e.g., de-duplicating consecutive words in a sentence).
+    Maintaining unique consecutive elements only, useful for data compression in sequences.
+    
+    let numbers = [1, 2, 3, 3, 2, 3, 3, 2, 2, 2, 1]
+    
+    let unique = numbers.uniqued()
+    // Array(unique) == [1, 2, 3]
+
+# Random Sampling
+    Operations for randomly selecting k elements without replacement from a sequence or collection.
+    
+    Use these methods for sampling multiple elements from a collection, optionally maintaining the relative order of the elements. Each method has an overload that takes a RandomNumberGenerator as a parameter.
+    
+    var source = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    
+    source.randomSample(count: 4)
+    // e.g. [30, 10, 70, 50]
+    source.randomStableSample(count: 4)
+    // e.g. [20, 30, 80, 100]
+    
+    var rng = SplitMix64(seed: 0)
+    source.randomSample(count: 4, using: &rng)
+
+# Indexed //not sure when we would really use this instead of enumerated tbh
+enumerated(): Produces a sequence of (offset, element) pairs, where offset is always a zero-based integer. This is helpful when you only need a sequential index (0, 1, 2, …) without needing the original collection’s index type.
+Indexed: Pairs each element with its actual index type from the collection (such as Int for arrays or String.Index for strings). This is useful for collections with non-integer or non-sequential indices, such as Dictionary, Set, or String.
+var matchingIndices: Set<Int> = []
+for (i, n) in numbers.indexed() {
+    if n.isMultiple(of: 20) { 
+        matchingIndices.insert(i) 
+    }
+}
+
+# Partition
+    Methods for performing a stable partition on mutable collections, and for finding the partitioning index in an already partitioned collection.
+    
+    The standard library’s existing partition(by:) method, which re-orders the elements in a collection into two partitions based on a given predicate, doesn’t guarantee stability for either partition. That is, the order of the elements in each partition doesn’t necessarily match their relative order in the original collection. These new methods expand on the existing partition(by:) by providing stability for one or both partitions.
+    
+    // existing partition(by:) - unstable ordering
+    var numbers = [10, 20, 30, 40, 50, 60, 70, 80]
+    let p1 = numbers.partition(by: { $0.isMultiple(of: 20) })
+    // p1 == 4
+    // numbers == [10, 70, 30, 50, 40, 60, 20, 80]
+    
+    // new stablePartition(by:) - keeps the relative order of both partitions
+    numbers = [10, 20, 30, 40, 50, 60, 70, 80]
+    let p2 = numbers.stablePartition(by: { $0.isMultiple(of: 20) })
+    // p2 == 4
+    // numbers == [10, 30, 50, 70, 20, 40, 60, 80]
+    Since partitioning is frequently used in divide-and-conquer algorithms, we also include a variant that accepts a range parameter to avoid copying when mutating slices, as well as a range-based variant of the existing standard library partition.
+    
+    The partitioningIndex(where:) method returns the index of the start of the second partition when called on an already partitioned collection.
+    
+    let numbers = [10, 30, 50, 70, 20, 40, 60]
+    let p = numbers.partitioningIndex(where: { $0.isMultiple(of: 20) })
+    // numbers[..<p] == [10, 30, 50, 70]
+    // numbers[p...] = [20, 40, 60]
+    The standard library’s existing filter(_:) method provides functionality to get the elements that do match a given predicate. partitioned(by:) returns both the elements that match the predicate as well as those that don’t, as a tuple.
+    
+    let cast = ["Vivien", "Marlon", "Kim", "Karl"]
+    let (longNames, shortNames) = cast.partitioned(by: { $0.count < 5 })
+    print(longNames)
+    // Prints "["Vivien", "Marlon"]"
+    print(shortNames)
+    // Prints "["Kim", "Karl"]"
+
+# Rotate
+    A mutating method that rotates the elements of a collection to new positions.
+    
+    var numbers = [10, 20, 30, 40, 50, 60]
+    let p = numbers.rotate(toStartAt: 2)
+    // numbers == [30, 40, 50, 60, 10, 20]
+    // p == 4 -- numbers[p] == 10
+    To work around the CoW / slice mutation problem for divide-and-conquer algorithms, which are the idiomatic use case for rotation, this also includes variants that take a range:
+    
+    var numbers = [10, 20, 30, 40, 50, 60]
+    numbers.rotate(subrange: 0..<3, toStartAt: 1)
+    // numbers = [20, 30, 10, 40, 50, 60]
+    numbers.rotate(subrange: 3..<6, toStartAt: 4)
+    // numbers = [20, 30, 10, 50, 60, 40]
+
 ```
 
 # Clean Code Tips
