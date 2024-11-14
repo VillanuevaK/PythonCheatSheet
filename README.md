@@ -814,6 +814,41 @@ for item in heapFromSequence.unordered {
 
     ```
     
+## swift-algorithms
+
+```swift
+    Combinations
+
+    A type that computes combinations of a collection’s elements.
+    The combinations(ofCount:) method returns a sequence of all the different combinations of a collection’s elements, with each combination in the order of the original collection.
+    Useful for subsets type problems
+
+    let numbers2 = [20, 10, 10]
+    for combo in numbers2.combinations(ofCount: 2) {
+        print(combo)
+    }
+    // [20, 10]
+    // [20, 10]
+    // [10, 10]
+
+    // Given a range, the combinations(ofCount:) method returns a sequence of all the different combinations of the given sizes of a collection’s elements in increasing order of size.
+    let numbers = [10, 20, 30, 40]
+    for combo in numbers.combinations(ofCount: 2...3) {
+        print(combo)
+    }
+    // [10, 20]
+    // [10, 30]
+    // [10, 40]
+    // [20, 30]
+    // [20, 40]
+    // [30, 40]
+    // [10, 20, 30]
+    // [10, 20, 40]
+    // [10, 30, 40]
+    // [20, 30, 40]
+
+
+```
 
 # Clean Code Tips
 
