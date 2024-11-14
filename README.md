@@ -6,6 +6,10 @@
 
 *Important data structures for LeetCode*
 
+//TODO:
+- Replace the images with accurate representations of time complexities and stuff for swift foos
+- Compare to libraries as im sure some of this can be further simplified through certain libraries
+
 ## Flow of control
 ```Swift
 // 1. If Statements
