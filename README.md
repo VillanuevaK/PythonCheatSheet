@@ -817,7 +817,7 @@ for item in heapFromSequence.unordered {
 ## swift-algorithms
 
 ```swift
-    Combinations
+    #Combinations
 
     A type that computes combinations of a collection’s elements.
     The combinations(ofCount:) method returns a sequence of all the different combinations of a collection’s elements, with each combination in the order of the original collection.
@@ -848,6 +848,121 @@ for item in heapFromSequence.unordered {
     // [20, 30, 40]
 
 
+    Note:
+    Permutations: Order matters, resulting in all possible ordered sequences.
+    Combinations: Order does not matter, resulting in unique groups of items without regard to sequence.
+
+    #Permutations
+    Methods that compute permutations of a collection’s elements, or of a subset of those elements.
+    The permutations(ofCount:) method, when called without the ofCount parameter, returns a sequence of all the different permutations of a collection’s elements
+
+    let numbers = [10, 20, 30]
+    for perm in numbers.permutations() {
+        print(perm)
+    }
+    // [10, 20, 30]
+    // [10, 30, 20]
+    // [20, 10, 30]
+    // [20, 30, 10]
+    // [30, 10, 20]
+    // [30, 20, 10]
+
+    Passing a value for ofCount generates partial permutations, each with the specified number of elements:
+    let numbers2 = [20, 10, 10]
+    for perm in numbers2.permutations() {
+        print(perm)
+    }
+    // [20, 10, 10]
+    // [20, 10, 10]
+    // [10, 20, 10]
+    // [10, 10, 20]
+    // [10, 20, 10]
+    // [10, 10, 20]
+    
+    To generate only unique permutations, use the uniquePermutations(ofCount:) method:
+    for perm in numbers2.uniquePermutations() {
+        print(perm)
+    }
+    // [20, 10, 10]
+    // [10, 20, 10]
+    // [10, 10, 20]
+    
+    Given a range, the methods return a sequence of all the different permutations of the given sizes of a collection’s elements in increasing order of size.
+    let numbers = [10, 20, 30]
+    for perm in numbers.permutations(ofCount: 0...) {
+        print(perm)
+    }
+    // []
+    // [10]
+    // [20]
+    // [30]
+    // [10, 20]
+    // [10, 30]
+    // [20, 10]
+    // [20, 30]
+    // [30, 10]
+    // [30, 20]
+    // [10, 20, 30]
+    // [10, 30, 20]
+    // [20, 10, 30]
+    // [20, 30, 10]
+    // [30, 10, 20]
+    // [30, 20, 10]
+
+    #Product
+    product can make the code more concise, easier to extend, and potentially more memory efficient. It’s often a good choice when working with Cartesian products, especially if working with large datasets or multiple collections.
+
+    // Using product
+    for (x, y) in product(1...3, ["a", "b", "c"]) {
+        print(x, y)
+    }
+    
+    // Double loop equivalent
+    for x in 1...3 {
+        for y in ["a", "b", "c"] {
+            print(x, y)
+        }
+    }
+
+#Chunked
+    Break a collection into nonoverlapping subsequences:
+    
+    chunked(by:) forms chunks of consecutive elements that pass a binary predicate,
+    chunked(on:) forms chunks of consecutive elements that project to equal values,
+    chunks(ofCount:) forms chunks of a given size, and
+    evenlyChunked(in:) forms a given number of equally-sized chunks.
+    
+    chunked(by:) uses a binary predicate to test consecutive elements, separating chunks where the predicate returns false. For example, you can chunk a collection into ascending sequences using this method:
+    let numbers = [10, 20, 30, 10, 40, 40, 10, 20]
+    let chunks = numbers.chunked(by: { $0 <= $1 })
+    // [[10, 20, 30], [10, 40, 40], [10, 20]]
+    
+    The chunked(on:) method, by contrast, takes a projection of each element and separates chunks where the projection of two consecutive elements is not equal. The result includes both the projected value and the subsequence that groups elements with that projected value:
+    let names = ["David", "Kyle", "Karoy", "Nate"]
+    let chunks = names.chunked(on: \.first!)
+    // [("D", ["David"]), ("K", ["Kyle", "Karoy"]), ("N", ["Nate"])]
+    
+    The chunks(ofCount:) method takes a count parameter (required to be > 0) and separates the collection into chunks of this given count. If the length of the collection is a multiple of the count parameter, all chunks will have the a count equal to the parameter. Otherwise, the last chunk will contain the remaining elements.
+    let names = ["David", "Kyle", "Karoy", "Nate"]
+    let evenly = names.chunks(ofCount: 2)
+    // equivalent to [["David", "Kyle"], ["Karoy", "Nate"]] 
+    
+    let remaining = names.chunks(ofCount: 3)
+    // equivalent to [["David", "Kyle", "Karoy"], ["Nate"]]
+    
+    The evenlyChunked(in:) method takes a count parameter and divides the collection into count number of equally-sized chunks. If the length of the collection is not a multiple of the count parameter, the chunks at the start will be longer than the chunks at the end.
+    
+    let evenChunks = (0..<15).evenlyChunked(in: 3)
+    // equivalent to [0..<5, 5..<10, 10..<15]
+    
+    let nearlyEvenChunks = (0..<15).evenlyChunked(in: 4)
+    // equivalent to [0..<4, 4..<8, 8..<12, 12..<15]
+    When "chunking" a collection, the entire collection is included in the result, unlike the split family of methods, where separators are dropped. Joining the result of a chunking method call results in a collection equivalent to the original.
+    
+    c.elementsEqual(c.chunked(...).joined())
+    // true
+
+    
 ```
 
 # Clean Code Tips
