@@ -138,9 +138,62 @@ TODO: Make a section on functional programming
 - what are closures
 - what are functinoal programming paradigms (mapping, filtering, reducing)
 - Higher-Order Functions
+- What are leetcode problems using forEach higher-order or compactMap that are better compared to most common methods of solving some of these problems
 - Then continue working scanning and updating everything here, then see what i have update in swift collections
+- 
 ```Swift
+Higher-order functions are functions that either take other functions as parameters or return functions as resutls. They allow for a functional programming approach, making code more concise and expressive, especially when working with collections.
 
+Swift provides several built-in higher order functions for collections:
+1. map: Transforms each elemnts of a collection using a closure and returns a new collection
+let number = [1,2,3,4]
+let doubled = numbers.map { $0 * 2 } // 2,4,6,8
+
+2. filter: Filters elements of a collection based on a condition provided in a closure
+let numbers = [1, 2, 3, 4]
+let evenNumbers = numbers.filter { $0 % 2 == 0 }  // [2, 4]
+
+3. reduce: Combines all elements of a collection into a single value, starting with an initial value
+let numbers = [1, 2, 3, 4]
+let sum = numbers.reduce(0) { $0 + $1 }  // 10
+
+4. flatMap: Transforms each element into a new collection and flatterns the result into a single level collection
+let numbers = [1, 2, 3, 4]
+let sum = numbers.reduce(0) { $0 + $1 }  // 10
+
+5. compactMap: Similar to map, but removes any nil values from the result
+let numbers = ["1", "2", "three"]
+let validNumbers = numbers.compactMap { Int($0) }  // [1, 2]
+
+6. forEach: Iterates over each element in the collection, similar to a for-in loop but without returning a value
+let numbers = [1, 2, 3]
+numbers.forEach { print($0) }
+
+What is a closure in swift?
+
+A closure is a self-contained block of code that can capture and store references to variables and constants from its surrounding context. This "capture" behavior allows closures to "close over" those values, meaning they retain the values or references to the variables from the scope in which they were created, even when used outside of that scope. ey have a concise syntax that make them useful for higher order functions.
+
+Closures are often used in situations where you want to pass a block of code as a parameter, such as for completion handlers, callbacks, asynch operations, or transforming data.
+
+Practical Uses:
+1. Asynchronous Operations and Callbacks: Closures are often used in networking or database calls as completion handlers:
+func fetchData(completion: @escaping (String) -> Void) {
+    // Simulate async work
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        completion("Data fetched")
+    }
+}
+
+fetchData { data in
+    print(data)  // Output: Data fetched
+}
+
+2. Capture LIst and Avoiding Retain Cycles: Closures in Swift can sometimes create retain cycles if they strongly reference selt within the closure's body. Swift's [weak self] capture list allows you to break this cycle:
+someObject.someMethod { [weak self] result in
+    self?.handle(result)
+}
+
+3. Higher order foos
 ```
 
 ## Strings
