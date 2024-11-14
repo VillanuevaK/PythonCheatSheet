@@ -1010,6 +1010,9 @@ for item in heapFromSequence.unordered {
 # Indexed //not sure when we would really use this instead of enumerated tbh
 enumerated(): Produces a sequence of (offset, element) pairs, where offset is always a zero-based integer. This is helpful when you only need a sequential index (0, 1, 2, …) without needing the original collection’s index type.
 Indexed: Pairs each element with its actual index type from the collection (such as Int for arrays or String.Index for strings). This is useful for collections with non-integer or non-sequential indices, such as Dictionary, Set, or String.
+
+Perhaps this is more guaranteed not to cause runtime crashes especially if you mutate an array while looping?
+
 var matchingIndices: Set<Int> = []
 for (i, n) in numbers.indexed() {
     if n.isMultiple(of: 20) { 
@@ -1064,6 +1067,30 @@ for (i, n) in numbers.indexed() {
     // numbers = [20, 30, 10, 40, 50, 60]
     numbers.rotate(subrange: 3..<6, toStartAt: 4)
     // numbers = [20, 30, 10, 50, 60, 40]
+
+# max and min
+    let numbers = [10, 20, 15, 30, 25]
+    let k = 3
+    
+    let topK = numbers.max(count: k, sortedBy: >)
+    print(topK) // [30, 25, 20]
+    In this case, max(count:k, sortedBy:) efficiently extracts the k largest elements without sorting the entire array, making it potentially more optimal, especially when k is much smaller than the size of the array.
+    
+    Key Differences
+    Sorting + prefix: Sorting the entire array and using prefix(k) gives you a sorted list, which is O(n log n). If you want to preserve order or if k is not small, this can be fine.
+    max(count:): This is more efficient in some cases. It is O(n log k), making it optimal if you're only interested in the top k elements.
+
+# Compacted
+remove all nil values from a collection of optional values
+let numbers: [Int?] = [1, nil, 2, nil, 3]
+let compactedNumbers = numbers.compacted()
+print(compactedNumbers) // Output: [1, 2, 3]
+
+# firstNonNil
+helps in finding the first non-nil value in a collection of optionals
+let numbers: [Int?] = [nil, nil, 3, 5, 7]
+let firstNonNilValue = numbers.firstNonNil()
+print(firstNonNilValue) // Output: Optional(3)
 
 ```
 
