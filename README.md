@@ -23,6 +23,9 @@ if number > 5 {
     print("Number is less than 5")
 }
 
+var tool = true
+tool.toggle() //false
+
 // 2. Switch Statements
 let grade = "A"
 switch grade {
