@@ -57,6 +57,12 @@ for number in numbers {
     print(number)
 }
 
+// besides if true { continue } we can also do this to nicely skip the first part
+var thisVar = nums[0] // already setting this up so we can skip the first part
+for n in nums.dropFirst() {    
+    // do stuff starting on the seconds loop 
+}
+
 // Using stride to create steps
 for i in stride(from: 0, through: 10, by: 2) { // Includes 10
     print(i) // Output: 0, 2, 4, 6, 8, 10
