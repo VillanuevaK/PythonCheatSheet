@@ -679,6 +679,8 @@ orderedSet.append(4) //instead of the usual insert we do this unless we insert a
 orderedSet.insert(0, at: 0)
 orderedSet.remove(2)
 orderedSet.remove(at: 0)
+orderedSet.removeFirst()
+orderedSet.removeLast()
 print(orderedSet[1]) // Access elements by index, just like an array
 orderedSet.count
 orderedSet.contains(3)
