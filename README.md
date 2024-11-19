@@ -669,6 +669,27 @@ set.formUnion(anotherSet) // Adds all elements of anotherSet to set without dupl
 
 ```
 
+## Ordered Sets
+Kind of like an ordered array and set combined
+
+```swift
+import Collections
+var orderedSet: OrderedSet = [1, 2, 3, 2, 1]
+orderedSet.append(4) //instead of the usual insert we do this unless we insert at a specific location
+orderedSet.insert(0, at: 0)
+orderedSet.remove(2)
+orderedSet.remove(at: 0)
+print(orderedSet[1]) // Access elements by index, just like an array
+orderedSet.count
+orderedSet.contains(3)
+if let index = orderedSet.firstIndex(of: 3) {
+    print("Index of 3 is \(index)") 
+}
+for element in orderedSet { //We can itterate normally just like a regular set
+    print(element)
+}
+```
+
 ## Tuples
 
 > A [tuple](https://www.scaler.com/topics/python/tuples-in-python/) is a collection which is ordered, unchangeable and can contain duplicate values
@@ -745,13 +766,13 @@ print("Queue after operations: \(queue)")
 
 ```
 
-## Heapq
+## Heap
 
 > As we know the Heap Data Structure is used to implement the Priority Queue ADT. In python we can directly access a Priority Queue implemented using a Heap by using the **Heapq** library/module.
 > 
 - *Operations Time Complexities*
     
-    ![Untitled](https://user-images.githubusercontent.com/47276307/172330122-29cf0756-89bc-4654-a4e8-4e318156c7d1.jpg)
+todo
     
 
 ```swift
@@ -784,9 +805,17 @@ heapFromSequence.replaceMax(with: 10) // Replaces current max with 10
 // Reserve space to improve efficiency if you know how many elements you’ll add:
 heapFromSequence.reserveCapacity(20)
 
+//To itterate a heap we need to do one of these
+
 // to itterate through a heap
 for item in heapFromSequence.unordered {
     print(item)
+}
+
+// Accessing elements directly
+let elements = heap.elements  // This gives you an unordered array of elements
+for element in elements {
+    print(element)  // You can iterate over this array
 }
 ```
 
