@@ -682,7 +682,7 @@ orderedSet.remove(at: 0)
 orderedSet.removeFirst()
 orderedSet.removeLast()
 windowContents.removeSubrange(0...duplicateIndex)
-windowContents.suffix(from: startPos) //getting everything including starting from startPos
+windowContents = windowContents.suffix(from: startPos) //getting everything including starting from startPos
 print(orderedSet[1]) // Access elements by index, just like an array
 orderedSet.count
 orderedSet.contains(3)
