@@ -610,6 +610,9 @@ Array(nums.reduce(into: [:]) {$0[$1, default: 0]+=1}.sorted(by: {$0.value > $1.v
 ```swift
 // 1. Initialize a Set in Swift
 var set: Set<Int> = [1, 2, 3]
+// = Set([1,2,3])
+// = Set(arrayLiteral: arr[0]) or = Set[arr[0]]) //for one element
+
 
 // 2. Add an item to the set
 set.insert(4) // Adds 4 to the set
