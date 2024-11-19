@@ -62,6 +62,7 @@ var thisVar = nums[0] // already setting this up so we can skip the first part
 for n in nums.dropFirst() {    
     // do stuff starting on the seconds loop 
 }
+nums.enumerated().dropFirst() //we can do this if we want enumerated. NOTE: if you put dropFirst().enumerated() aka reverse which goes first, the indexs will be off
 
 // Using stride to create steps
 for i in stride(from: 0, through: 10, by: 2) { // Includes 10
