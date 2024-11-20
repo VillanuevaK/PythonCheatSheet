@@ -466,6 +466,18 @@ print(lastTwoItems)  // Output: [4, 5]
 let everythingExceptLastTwo = Array(a.dropLast(2))
 print(everythingExceptLastTwo)  // Output: [1, 2, 3]
 
+Mutable Methods (In-place)
+removeLast(k): Removes the last element in the collection. O(1) for arrays (amortized), O(n) for strings due to Copy-on-Write.
+removeFirst(k): Removes the first element in the collection. O(n) for arrays (shifting), O(n) for strings due to Copy-on-Write.
+removeSubrange(): Removes a range of elements from the collection. O(n) for shifting elements in arrays.
+Non-Mutating Methods (Creates New Collections)
+dropLast(k): Returns a new collection without the last element(s). O(k), where k is the number of elements dropped.
+dropFirst(k): Returns a new collection without the first element(s). O(k), where k is the number of elements dropped.
+prefix(k): Returns the first n elements from the collection. O(n), where n is the number of elements.
+suffix(k): Returns the last n elements from the collection. O(n), where n is the number of elements.
+prefix(while:): Returns elements from the start until a condition is no longer met. O(n), where n is the number of elements.
+suffix(while:): Returns elements from the end until a condition is no longer met. O(n), where n is the number of elements.
+
 ```
 
 ## Linked Lists
@@ -512,6 +524,7 @@ let dictCopy = dict // Output: ["a": 1, "b": 2, "c": 3]
 dict.removeValue(forKey: "a") // Removes the pair with key "a"
 
 // 8. Removes and returns the most recent pair added (in Swift, you usually have to keep track of insertion order)
+// I think we can only do this in an ordered dictionary
 let lastItem = dict.removeLast() // Removes and returns the last key-value pair (if maintaining order is required)
 
 // 9. Sets the value for the key, if key exists; else, it adds the key with the default value
