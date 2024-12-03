@@ -211,6 +211,8 @@ A Substring is a lightweight view into a String and avoids extra memory allocati
 - Use String when you need to change the the data or make a copy to store it
 
 ```Swift
+// .count is O(n) unlike for arrays it's O(1)
+
 // ** split Function **
 let text = "Swift is a fun programming language"
 let words = text.split(separator: " ") //This is a list of substrings! I want a list of strings
