@@ -145,6 +145,20 @@ for (c1,c2) in zip(s, t) {
     dict[c2, default: 0] -= 1
 }
 
+// How to use zip to put variables together in array where elements are tuples
+positions = [1, 2, 3, 4]
+speeds = [10, 20, 30, 40]
+
+# Use zip to combine positions and speeds
+position_speed_pairs = list(zip(positions, speeds))
+
+// How to use zip to put variables together in array where elements are tuples (named)
+let arrayTup: [(pos: Int, speed: Int)] = zip(positions, speeds).map { (pos: $0, speed: $1) }
+
+// Access elements by name
+print(arrayTup[0].pos)    // Output: 1
+print(arrayTup[0].speed)  // Output: 10
+
 // Reference Check Equality Identity Operators (=== and !==)
 ```
 
