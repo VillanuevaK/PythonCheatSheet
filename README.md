@@ -11,6 +11,13 @@
 - Compare to libraries as im sure some of this can be further simplified through certain libraries
 -     - Look into Swift Collections if there a need for BitSet, BitArray, OrderedSet, OrderedDictionary, TreeSet, or TreeDictionary comes up
 
+## BinaryInteger (Int, UInt, Int8)
+```Swift
+// Sugar for i % 2 == 0 for even numbers
+i.isMultiple(of: 2)
+(x + y).isMultiple(of: 2)
+```
+
 ## Flow of control
 ```Swift
 // 1. If Statements
