@@ -178,6 +178,19 @@ Swift provides several built-in higher order functions for collections:
 let number = [1,2,3,4]
 let doubled = numbers.map { $0 * 2 } // 2,4,6,8
 
+To change the type with map we can do things like:
+let isPostiveIndex = nums.map { $0 > 0 }
+// or
+let isPostiveIndex = nums.map { num -> Bool in num > 0 } // This is the same but more explicit
+// or if we were doing something multiline:
+let isPostiveIndex = nums.map { num -> Bool in // The explicit return is not necessary
+                                if num > 1 {
+                                    return true
+                                }
+                                else if (...) {...}
+                                return ...
+                    }
+
 2. filter: Filters elements of a collection based on a condition provided in a closure (white list)
 let numbers = [1, 2, 3, 4]
 let evenNumbers = numbers.filter { $0 % 2 == 0 }  // [2, 4]
