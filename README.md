@@ -755,6 +755,8 @@ for element in orderedSet { //We can itterate normally just like a regular set
 ```swift
 // is hashable
 let tuple = (1, 2, 3, 1)
+// or
+let tuple: (Type1, Type2, Type3) = (value1, value2, value3)
 
 // tuple with named parameters:
 let person: (name: String, age: Int) = (name: "kev", age: 28)
