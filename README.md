@@ -388,16 +388,42 @@ print(reversedString)  // Output: "!tfiwS ,olleH"
 
 ```
 
-## Lists
+## Arrays
 
-> Lists are used to store multiple items in a single variable
-> 
-- *Operations Time Complexities*
-    
-    ![Untitled](https://user-images.githubusercontent.com/47276307/172330098-1c5f0a6e-7f80-4f4f-9be6-1d734e2c70cd.jpg)
-    
+> TODO: Time complexity info here
 
 ```swift
+1. Ways to instantiate arrays
+var emptyArray1: [Int] = []
+var emptyArray2 = [String]()  // Type inferred as [String]
+var zeros = Array(repeating: 0, count: 5)  // [0, 0, 0, 0, 0]
+var emptyStrings = Array(repeating: "", count: 3)  // ["", "", ""]
+var numbers = [1, 2, 3, 4, 5]
+var fruits = ["Apple", "Banana", "Orange"]
+
+var originalArray = [1, 2, 3, 4]
+var copiedArray = originalArray  // A reference copy
+var subArray = Array(originalArray.prefix(2))  // [1, 2]
+
+var squares = (1...5).map { $0 * $0 }  // [1, 4, 9, 16, 25]
+
+var set = Set([1, 2, 3, 4])
+var arrayFromSet = Array(set)  // Converts set to array
+
+var string = "Hello"
+var characters = Array(string)  // ["H", "e", "l", "l", "o"]
+var dict = ["a": 1, "b": 2]
+var keys = Array(dict.keys)  // ["a", "b"]
+var values = Array(dict.values)  // [1, 2]
+
+var array = [Int]()
+array.append(10)  // [10]
+array += [20, 30]  // [10, 20, 30]
+
+var optionalArray: [Int?] = [1, nil, 3, 4]  // [1, nil, 3, 4]
+
+let arrayFromAnotherArray = Array(contentsOf: [1, 2, 3])  // [1, 2, 3]
+
 var nums = [1, 2, 3]
 print(nums.count) //3
 
