@@ -618,19 +618,13 @@ for (key, value) in dict {
 counts[element, default: 0] += 1
 
 //16.2 keys
-// A. Define a dictionary with a tuple as the key
-var dict: [ (String, Int) : String ] = [:]
-// or if this makes it easier if you want to access by dict[].name instead of dict[].0
-var dict: [ (name: String, score: Int) : String ] = [:]
-
-// B. Add entries to the dictionary
-dict[("Apple", 1)] = "First entry"
-dict[("Banana", 2)] = "Second entry"
-
-// C. Accessing values using tuple keys
-if let value = dict[("Apple", 1)] {
-    print("Value for ('Apple', 1): \(value)") // Output: First entry
+// A. Define a dictionary with a tuple as the key (can't do this so here is a work around)
+struct Point: Hashable {
+    let x: Int
+    let y: Int
 }
+var dict: [Point: String] = [:]
+dict[Point(x: 0, y: 0)] = "Origin"
 ```
 
 ## Functional Programming 
@@ -688,6 +682,12 @@ var set: Set<Int> = [1, 2, 3]
 // = Set([1,2,3])
 // = Set(arrayLiteral: arr[0]) or = Set[arr[0]]) //for one element
 
+// Hasing work around for tuple
+struct Point: Hashable {
+    let x: Int
+    let y: Int
+}
+var visited: Set<Point> = [Point(x: 0, y: 0)]
 
 // 2. Add an item to the set
 set.insert(4) // Adds 4 to the set
@@ -779,10 +779,17 @@ for element in orderedSet { //We can itterate normally just like a regular set
     
 
 ```swift
-// is hashable
+// is not hashable (cant be used in sets or as key in dictionary_)
 let tuple = (1, 2, 3, 1)
 // or
 let tuple: (Type1, Type2, Type3) = (value1, value2, value3)
+
+// Hashing work around
+struct Point: Hashable {
+    let x: Int
+    let y: Int
+}
+var visited: Set<Point> = [Point(x: 0, y: 0)]
 
 // tuple with named parameters:
 let person: (name: String, age: Int) = (name: "kev", age: 28)
