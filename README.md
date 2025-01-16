@@ -817,6 +817,9 @@ import Collections // Make sure to import the Swift Collections package
 // Start with a deque
 var queue: Deque<String> = Deque(["name", "age", "DOB"])
 
+// var queue = Deque(arrayLiteral: (Point(x: 0, y: 0), 0))
+//    var queue = Deque([(Point(x: 0, y: 0), 0)]) // Another way to write this
+
 // Append an element to the right
 queue.append("append_from_right") // O(1)
 
