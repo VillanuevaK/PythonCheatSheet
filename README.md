@@ -11,6 +11,45 @@
 - Compare to libraries as im sure some of this can be further simplified through certain libraries
 -     - Look into Swift Collections if there a need for BitSet, BitArray, OrderedSet, OrderedDictionary, TreeSet, or TreeDictionary comes up
 
+## CGFloat 
+```Swift
+Overview of CGFloat
+- Definition: CGFloat is a floating-point type used in Apple frameworks like UIKit, AppKit, and CoreGraphics.
+- Purpose: It is designed to work efficiently with hardware and graphics APIs, especially when interfacing with CoreGraphics or Quartz 2D.
+
+/*
+If you're only working in Swift without Apple-specific frameworks, Double is sufficient.
+Modern Apple platforms are mostly 64-bit, so CGFloat is effectively a Double in these cases.
+This makes it easier to transition between CGFloat and Double for modern development.
+*/
+
+// Instantiating
+let myValue: CGFloat = 10.5
+
+let fromDouble = CGFloat(3.14) // From Double
+let fromInt = CGFloat(42)     // From Int
+
+let pi: CGFloat = .pi  // Common constant
+
+
+// Basic Arithmetic:
+let width: CGFloat = 100.0
+let height: CGFloat = 50.0
+let area = width * height
+
+// Drawing in CoreGraphics:
+let rect = CGRect(x: CGFloat(10), y: CGFloat(20), width: CGFloat(100), height: CGFloat(50))
+
+// Working with UI Elements:
+let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+view.layer.cornerRadius = CGFloat(10.0)
+
+// Trigonometric Calculations:
+let angle: CGFloat = .pi / 4
+let sinValue = sin(angle)
+
+```
+
 ## BinaryInteger (Int, UInt, Int8)
 ```Swift
 // Sugar for i % 2 == 0 for even numbers
