@@ -11,6 +11,14 @@
 - Compare to libraries as im sure some of this can be further simplified through certain libraries
 -     - Look into Swift Collections if there a need for BitSet, BitArray, OrderedSet, OrderedDictionary, TreeSet, or TreeDictionary comes up
 
+## Int
+```Swift
+// Underscores function like commas for Ints. Also works for floating point values
+let num1 = 1000000007 // Hard to read
+let num2 = 1_000_000_007 // Easier to read (same value)
+print(num1 == num2) // true
+
+```
 ## CGFloat 
 ```Swift
 Overview of CGFloat
