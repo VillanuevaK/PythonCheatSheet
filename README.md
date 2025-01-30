@@ -725,16 +725,10 @@ Array(nums.reduce(into: [:]) {$0[$1, default: 0]+=1}.sorted(by: {$0.value > $1.v
 
 ```swift
 // 1. Initialize a Set in Swift
+// This version gives us the individual elements
 var set: Set<Int> = [1, 2, 3]
 // = Set([1,2,3])
 // = Set(arrayLiteral: arr[0]) or = Set[arr[0]]) //for one element
-
-// Hasing work around for tuple
-struct Point: Hashable {
-    let x: Int
-    let y: Int
-}
-var visited: Set<Point> = [Point(x: 0, y: 0)]
 
 // Arrays can be hashable apparantly as long as their contents is immutable and is a hashable type -- works with dictionary keys too: var memo = [[Int]: Int]() 
 var memoblo: Set<[Int]> = Set(arrayLiteral: [])
@@ -743,6 +737,21 @@ memoblo.insert([1,1,1])
 memoblo.insert([1,1,1])
 memoblo.insert([1,2,1])
 print(memoblo) // prints [], [1,1,1], and [1,2,1]
+
+// This version gives us the individual String.Element (String.Element is a type alias for Character)
+var setOfChar = Set(word1 + word2)
+
+// This gives use the hashable whole string for a set (not individual elements)
+var uniqueStrings: Set<String> = ["apple", "banana", "cherry"]
+uniqueStrings.insert("apple") // No effect since sets don't allow duplicates
+uniqueStrings.insert("date")  // Adds "date" to the set
+
+// Hashing work around for tuple
+struct Point: Hashable {
+    let x: Int
+    let y: Int
+}
+var visited: Set<Point> = [Point(x: 0, y: 0)]
 
 // 2. Add an item to the set
 set.insert(4) // Adds 4 to the set
