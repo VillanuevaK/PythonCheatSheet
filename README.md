@@ -736,6 +736,14 @@ struct Point: Hashable {
 }
 var visited: Set<Point> = [Point(x: 0, y: 0)]
 
+// Arrays can be hashable apparantly as long as their contents is immutable and is a hashable type -- works with dictionary keys too: var memo = [[Int]: Int]() 
+var memoblo: Set<[Int]> = Set(arrayLiteral: [])
+// If we dont want to start by inserting we can do var memoblo: Set<[Int]> = Set()
+memoblo.insert([1,1,1])
+memoblo.insert([1,1,1])
+memoblo.insert([1,2,1])
+print(memoblo) // prints [], [1,1,1], and [1,2,1]
+
 // 2. Add an item to the set
 set.insert(4) // Adds 4 to the set
 
@@ -826,7 +834,7 @@ for element in orderedSet { //We can itterate normally just like a regular set
     
 
 ```swift
-// is not hashable (cant be used in sets or as key in dictionary_)
+// is not hashable (cant be used in sets or as key in dictionary), but apparently immutable arrays with hashable types can be...
 let tuple = (1, 2, 3, 1)
 // or
 let tuple: (Type1, Type2, Type3) = (value1, value2, value3)
